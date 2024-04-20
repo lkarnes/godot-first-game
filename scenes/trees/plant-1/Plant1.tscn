@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://2t2oq3kitvec"]
+
+[ext_resource type="Texture2D" uid="uid://bo6oxgqlfd6ba" path="res://sprites/tilesets/building/plant-1.png" id="1_d05bl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ypoa"]
+radius = 7.07107
+
+[node name="Plant1" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d05bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8ypoa")

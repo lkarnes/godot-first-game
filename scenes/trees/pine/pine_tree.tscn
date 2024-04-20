@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm8wql61io2a0"]
+
+[ext_resource type="Texture2D" uid="uid://fausuka0dy2h" path="res://sprites/pine-tree.png" id="1_6sqpo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_528yf"]
+radius = 3.16228
+
+[node name="PineTree" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -29)
+texture = ExtResource("1_6sqpo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_528yf")
