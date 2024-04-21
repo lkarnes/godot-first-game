@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://qyfel8cg3162"]
+
+[ext_resource type="Script" path="res://scenes/levels/dungeon1.gd" id="1_pfvxx"]
+[ext_resource type="PackedScene" uid="uid://cd3oa36mo5noo" path="res://sprites/tilesets/dungeon.tscn" id="1_wlmoi"]
+
+[node name="Dungeon1" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(196, 17)
+script = ExtResource("1_pfvxx")
+
+[node name="Dungeon" parent="." instance=ExtResource("1_wlmoi")]
+unique_name_in_owner = true
+z_index = -1

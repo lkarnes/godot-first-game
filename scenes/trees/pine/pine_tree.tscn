@@ -6,6 +6,7 @@
 radius = 3.16228
 
 [node name="PineTree" type="StaticBody2D"]
+collision_layer = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -29)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6y76n8us5bhb"
-path="res://.godot/imported/underworld-dirt-wang.png-f8da77dcd2104d69a8b7069d3472f98c.ctex"
+uid="uid://4s3snkbac27r"
+path="res://.godot/imported/dungeon_entrance.png-ec99b32c4459a3e0e840dfe9458aa9d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tilesets/terrain/underworld-dirt-wang.png"
-dest_files=["res://.godot/imported/underworld-dirt-wang.png-f8da77dcd2104d69a8b7069d3472f98c.ctex"]
+source_file="res://sprites/tilesets/building/dungeon_entrance.png"
+dest_files=["res://.godot/imported/dungeon_entrance.png-ec99b32c4459a3e0e840dfe9458aa9d3.ctex"]
 
 [params]
 
