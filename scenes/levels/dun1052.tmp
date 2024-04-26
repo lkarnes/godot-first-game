@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://cd3oa36mo5noo" path="res://sprites/tilesets/dungeon.tscn" id="1_wlmoi"]
 
 [sub_resource type="Gradient" id="Gradient_80j4i"]
-offsets = PackedFloat32Array(0, 0.704)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.414103, 0.150592, 1)
+offsets = PackedFloat32Array(0, 0.704167)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4o2kb"]
-seed = 3
-frequency = 0.0099
+noise_type = 4
+frequency = 0.0306
 metadata/_preview_in_3d_space_ = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_526yr"]
-width = 50
-height = 50
+width = 100
+height = 100
 color_ramp = SubResource("Gradient_80j4i")
 noise = SubResource("FastNoiseLite_4o2kb")
 
@@ -26,4 +26,3 @@ noise_height_text = SubResource("NoiseTexture2D_526yr")
 [node name="Dungeon" parent="." instance=ExtResource("1_wlmoi")]
 unique_name_in_owner = true
 z_index = -1
-layer_0/tile_data = PackedInt32Array()

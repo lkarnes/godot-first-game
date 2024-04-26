@@ -15,9 +15,8 @@ var noise_val_arr = []
 
 func _ready():
 	noise = noise_height_text.noise
+	noise.seed = randf() * 100;
 	generate_world()
-	#await create_backdrop();
-	pass
 	
 func _physics_process(delta):
 	if !player_set:
@@ -36,17 +35,34 @@ func find_spawn_position():
 			good_coords = tileMap.map_to_local(Vector2i(x,y))
 	return good_coords;
 func generate_world():
-	var land_tiles = []
-	var lava_tiles = []
+	var land_tiles: Array = []
+	var lava_tiles: Array = []
+	var cliff_tiles: Array = []
 	for x in range(width):
 		for y in range(height):
+			lava_tiles.append(Vector2i(x,y))
 			var noise_val = noise.get_noise_2d(x, y);
 			if x < width - edge_size && x > edge_size && y < width - edge_size && y > edge_size:
-				if noise_val > .0:
+				if noise_val > .28:
+					var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
+					var too_close = false;
+					for tile in adjacent:
+						if !lava_tiles.has(tile):
+							cliff_tiles.append(tile);
+						else:
+							too_close = true;
+					if !too_close:
+						cliff_tiles.append(Vector2i(x,y))
+					else:
+						print('too close');
+				elif noise_val > -.1:
 					#place land
 					land_tiles.append(Vector2i(x,y))
-			lava_tiles.append(Vector2i(x,y))
+					var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
+					for tile in adjacent:
+						land_tiles.append(tile);
 	tileMap.set_cells_terrain_connect(0, lava_tiles, 0, 1);
+	tileMap.set_cells_terrain_connect(0, cliff_tiles, 0, 2);
 	tileMap.set_cells_terrain_connect(0, land_tiles, 0, 0);
 
 

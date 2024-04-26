@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy7uudemuu31v"]
+
+[ext_resource type="Script" path="res://scenes/levels/procedural_world.gd" id="1_5rgc7"]
+[ext_resource type="PackedScene" uid="uid://bh0spe5rrgwhg" path="res://sprites/tilesets/basic_grass.tscn" id="2_c2msu"]
+
+[sub_resource type="Gradient" id="Gradient_wr0yp"]
+offsets = PackedFloat32Array(0.0333333, 0.4875, 0.6125, 1)
+colors = PackedColorArray(0.394996, 0.178801, 0.0283677, 1, 0, 0.639216, 0, 1, 0.726852, 0.6469, 0.379323, 1, 0, 0.254902, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4vpku"]
+frequency = 0.0189
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a1668"]
+color_ramp = SubResource("Gradient_wr0yp")
+noise = SubResource("FastNoiseLite_4vpku")
+
+[node name="ProceduralWorld" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_5rgc7")
+noise_height_text = SubResource("NoiseTexture2D_a1668")
+
+[node name="BasicGrass" parent="." instance=ExtResource("2_c2msu")]
+unique_name_in_owner = true
+z_index = -1

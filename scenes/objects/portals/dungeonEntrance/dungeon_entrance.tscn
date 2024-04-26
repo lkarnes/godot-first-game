@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjhprggu8sjlu"]
+[gd_scene load_steps=5 format=3 uid="uid://cjhprggu8sjlu"]
 
 [ext_resource type="Texture2D" uid="uid://4s3snkbac27r" path="res://sprites/tilesets/building/dungeon_entrance.png" id="1_1crn0"]
 [ext_resource type="Script" path="res://scenes/objects/portals/dungeonEntrance/dungeon_entrance.gd" id="1_fwrv4"]
-[ext_resource type="PackedScene" uid="uid://qyfel8cg3162" path="res://scenes/levels/dungeon1.tscn" id="2_xuvuh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pu06"]
 size = Vector2(58, 54)
@@ -15,7 +14,6 @@ collision_layer = 2
 collision_mask = 253
 gravity_scale = 0.0
 script = ExtResource("1_fwrv4")
-next_scene = ExtResource("2_xuvuh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
