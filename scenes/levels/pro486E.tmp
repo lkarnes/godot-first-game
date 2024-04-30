@@ -9,6 +9,7 @@ offsets = PackedFloat32Array(0.0333333, 0.4875, 0.6125, 1)
 colors = PackedColorArray(0.394996, 0.178801, 0.0283677, 1, 0, 0.639216, 0, 1, 0.726852, 0.6469, 0.379323, 1, 0, 0.254902, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4vpku"]
+noise_type = 3
 frequency = 0.007
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a1668"]

@@ -7,36 +7,39 @@ var trees_set: bool = false;
 var noise: Noise;
 @onready var tileMap: TileMap = %BasicGrass;
 
-var width: int = 100;
-var height: int = 100;
+var width: int = 32;
+var height: int = 32;
 var edge_size = 0;
+var chunks = 25;
+var all_land_tiles = [];
 
-
-var water_tiles: Array = []
-var sand_tiles: Array = []
-var land_tiles: Array = []
-var cliff_tiles: Array = []
+var sand_range = [-0.1, 0.0];
+var land_range = [0, .9];
+var cliff_range = [.2, .22];
 
 var noise_val_arr = []
 
 func _ready():
+	noise_height_text.width = width * sqrt(chunks);
+	noise_height_text.height = height * sqrt(chunks);
 	noise = noise_height_text.noise
 	noise.seed = randf() * 100;
+	
+func _physics_process(delta):
 	if !terrain_set:
 		%LoadingScreen.loading_text = 'Generating Terrain...'
 		terrain_set = true;
 		generate_terrain()
 	
-func _physics_process(delta):
 	if !trees_set && terrain_set:
 		%LoadingScreen.loading_text = 'Generating Trees...'
 		trees_set = true;
-		generate_trees()
+		#generate_trees()
 	elif !player_set:
 		%LoadingScreen.loading_text = 'Setting Spawn...'
 		player_set = true;
 		Player.set_position(find_spawn_position());
-	else:
+	elif has_node("LoadingScreen"):
 		remove_child(%LoadingScreen)
 	
 func find_spawn_position():
@@ -54,34 +57,63 @@ func find_spawn_position():
 	return good_coords;
 
 func generate_terrain():
-	for x in range(width):
-		for y in range(height):
+	var unloaded_chunks = chunks;
+	var dimensions: int = sqrt(chunks);
+	var chunk_arr: Array = [];
+	
+	for x in dimensions:
+		for y in dimensions:
+			chunk_arr.append(Vector2(x * width, y * height))
+
+	while unloaded_chunks > 0:
+		unloaded_chunks = unloaded_chunks - 1;
+		print('loading chunk: ', unloaded_chunks)
+		generate_chunk(chunk_arr.pop_front())
+		
+
+func generate_chunk(starting_coords: Vector2):
+	var water_tiles: Array = []
+	var sand_tiles: Array = []
+	var land_tiles: Array = []
+	var cliff_tiles: Array = []
+	var total = 0;
+	var max = -100;
+	var min = 100;
+	for x in range(starting_coords.x, starting_coords.x + width + 1):
+		for y in range(starting_coords.y, starting_coords.y + height + 1):
 			water_tiles.append(Vector2i(x,y))
 			var noise_val = noise.get_noise_2d(x, y);
-			if x < width - edge_size && x > edge_size && y < width - edge_size && y > edge_size:
-				if noise_val > -.1 && noise_val <= 0:
-					sand_tiles.append(Vector2i(x,y))
-					var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
-					for tile in adjacent:
-						sand_tiles.append(tile);
-				elif noise_val > 0:
-					land_tiles.append(Vector2i(x,y))
-					var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
-					for tile in adjacent:
-						land_tiles.append(tile);
-				
-				if noise_val > .15 && noise_val < .17:
-					cliff_tiles.append(Vector2i(x,y))
+			if noise_val > max:
+				max = noise_val;
+			if noise_val < min:
+				min = noise_val;
+			total =+ noise_val
+			if noise_val > sand_range[0] && noise_val <= sand_range[1]:
+				sand_tiles.append(Vector2i(x,y))
+			elif noise_val > land_range[0] && noise_val <= land_range[1]:
+				land_tiles.append(Vector2i(x,y))
+			
+			if noise_val > cliff_range[0] && noise_val <= cliff_range[1]:
+				cliff_tiles.append(Vector2i(x,y))
+	
+	print('avg', total / (width * height));
+	print("max:", max)
+	print("min:", min)
+	print('sand tiles: ', sand_tiles.size());
+	print('land tiles: ', land_tiles.size());
+	print('cliff tiles: ', cliff_tiles.size())
+	print('______________________________________')
 	tileMap.set_cells_terrain_connect(0, water_tiles, 0, 1);
 	tileMap.set_cells_terrain_connect(0, sand_tiles, 0, 3);
 	tileMap.set_cells_terrain_connect(0, land_tiles, 0, 0);
 	tileMap.set_cells_terrain_connect(0, cliff_tiles, 0, 2);
+	all_land_tiles.append_array(land_tiles);
 	
 func generate_trees():
 	const PINE = preload('res://scenes/trees/pine/pine_tree.tscn')
 	var tree_tiles: Array = [];
 	
-	for coords: Vector2i in land_tiles:
+	for coords: Vector2i in all_land_tiles:
 		var noise_val = noise.get_noise_2d(coords.x, coords.y);
 		var jittered_spawn = (noise_val / 2) + randf();
 
