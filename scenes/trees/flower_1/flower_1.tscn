@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi5cul107781i"]
+
+[ext_resource type="Texture2D" uid="uid://cclosp2vetg4h" path="res://sprites/tilesets/building/flower-1.png" id="1_61eyg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttfmh"]
+radius = 5.0
+
+[node name="Flower1" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ttfmh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_61eyg")

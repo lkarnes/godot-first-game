@@ -14,8 +14,8 @@ var chunks = 25;
 var all_land_tiles = [];
 
 var sand_range = [-0.1, 0.0];
-var land_range = [0, .9];
-var cliff_range = [.2, .22];
+var land_range = [0, .35];
+var cliff_range = [.35, 100];
 
 var noise_val_arr = []
 
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if !trees_set && terrain_set:
 		%LoadingScreen.loading_text = 'Generating Trees...'
 		trees_set = true;
-		#generate_trees()
+		generate_trees()
 	elif !player_set:
 		%LoadingScreen.loading_text = 'Setting Spawn...'
 		player_set = true;
@@ -67,7 +67,6 @@ func generate_terrain():
 
 	while unloaded_chunks > 0:
 		unloaded_chunks = unloaded_chunks - 1;
-		print('loading chunk: ', unloaded_chunks)
 		generate_chunk(chunk_arr.pop_front())
 		
 
@@ -76,48 +75,56 @@ func generate_chunk(starting_coords: Vector2):
 	var sand_tiles: Array = []
 	var land_tiles: Array = []
 	var cliff_tiles: Array = []
-	var total = 0;
-	var max = -100;
-	var min = 100;
 	for x in range(starting_coords.x, starting_coords.x + width + 1):
 		for y in range(starting_coords.y, starting_coords.y + height + 1):
 			water_tiles.append(Vector2i(x,y))
 			var noise_val = noise.get_noise_2d(x, y);
-			if noise_val > max:
-				max = noise_val;
-			if noise_val < min:
-				min = noise_val;
-			total =+ noise_val
+			# assign the tiles based off the noise value
 			if noise_val > sand_range[0] && noise_val <= sand_range[1]:
 				sand_tiles.append(Vector2i(x,y))
-			elif noise_val > land_range[0] && noise_val <= land_range[1]:
+			elif !( noise_val > cliff_range[0] && noise_val <= cliff_range[1]) && noise_val > sand_range[1]:
 				land_tiles.append(Vector2i(x,y))
-			
-			if noise_val > cliff_range[0] && noise_val <= cliff_range[1]:
+
+			if noise_val > cliff_range[0]:
 				cliff_tiles.append(Vector2i(x,y))
-	
-	print('avg', total / (width * height));
-	print("max:", max)
-	print("min:", min)
-	print('sand tiles: ', sand_tiles.size());
-	print('land tiles: ', land_tiles.size());
-	print('cliff tiles: ', cliff_tiles.size())
-	print('______________________________________')
+				var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
+	# set the tiles using the tile arrays
 	tileMap.set_cells_terrain_connect(0, water_tiles, 0, 1);
 	tileMap.set_cells_terrain_connect(0, sand_tiles, 0, 3);
 	tileMap.set_cells_terrain_connect(0, land_tiles, 0, 0);
 	tileMap.set_cells_terrain_connect(0, cliff_tiles, 0, 2);
 	all_land_tiles.append_array(land_tiles);
+	# temp logging
+	print('sand tiles: ', sand_tiles.size());
+	print('land tiles: ', land_tiles.size());
+	print('cliff tiles: ', cliff_tiles.size())
+	print('tile count: ', sand_tiles.size() + land_tiles.size() + cliff_tiles.size() + water_tiles.size())
+	print('______________________________________')
 	
 func generate_trees():
-	const PINE = preload('res://scenes/trees/pine/pine_tree.tscn')
+	const PINE = preload('res://scenes/trees/pine/pine_tree.tscn');
+	const PLANT1 = preload("res://scenes/trees/plant-1/plant_1.tscn");
+	const FLOWER1 = preload("res://scenes/trees/flower_1/flower_1.tscn");
 	var tree_tiles: Array = [];
+	var plant_tiles: Array = [];
 	
 	for coords: Vector2i in all_land_tiles:
 		var noise_val = noise.get_noise_2d(coords.x, coords.y);
-		var jittered_spawn = (noise_val / 2) + randf();
+		var jittered_spawn = abs(noise_val / 2) + randf();
 
-		if jittered_spawn > 1.1 && !tree_tiles.has(coords):
+		if  jittered_spawn > .97 && jittered_spawn < .98:
+			plant_tiles.append(coords)
+			var new_flower_1 = FLOWER1.instantiate()
+			new_flower_1.global_position = tileMap.map_to_local(coords);
+			new_flower_1.z_index = -1
+			add_child(new_flower_1)
+		elif jittered_spawn > .98 && jittered_spawn < 1:
+			plant_tiles.append(coords)
+			var new_plant_1 = PLANT1.instantiate()
+			new_plant_1.global_position = tileMap.map_to_local(coords);
+			new_plant_1.z_index = -1
+			add_child(new_plant_1)
+		elif jittered_spawn > 1 && jittered_spawn < 1.5 && !tree_tiles.has(coords):
 			tree_tiles.append(coords)
 			var new_pine = PINE.instantiate()
 			new_pine.global_position =  tileMap.map_to_local(coords);
