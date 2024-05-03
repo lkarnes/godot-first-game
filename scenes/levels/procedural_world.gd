@@ -130,7 +130,6 @@ func get_chunks_in_range():
 			var new_coord = Vector2i(x_pos_change, y_pos_change);
 
 			if !chunk_cache.has(str(new_coord)):
-				#print('not exists');
 				generate_chunk(new_coord);
 
 func generate_trees():
