@@ -7,15 +7,18 @@ var trees_set: bool = false;
 var noise: Noise;
 @onready var tileMap: TileMap = %BasicGrass;
 
-var width: int = 32;
-var height: int = 32;
+var width: int = 8;
+var height: int = 8;
 var edge_size = 0;
-var chunks = 25;
+var chunks = 100;
 var all_land_tiles = [];
 
 var sand_range = [-0.1, 0.0];
 var land_range = [0, .35];
 var cliff_range = [.35, 100];
+
+var chunk_cache = {};
+var grid_position: Vector2i;
 
 var noise_val_arr = []
 
@@ -41,7 +44,18 @@ func _physics_process(delta):
 		Player.set_position(find_spawn_position());
 	elif has_node("LoadingScreen"):
 		remove_child(%LoadingScreen)
-	
+		
+	if player_set:
+		var new_grid_position = tileMap.local_to_map(
+			Vector2i(
+				snapped(Player.player.global_position.x, width * 32), 
+				snapped(Player.player.global_position.y, height * 32))
+		);
+		if new_grid_position != grid_position:
+			#print('position_change:', new_grid_position)
+			get_chunks_in_range();
+			grid_position = new_grid_position;
+		
 func find_spawn_position():
 	var good_coords;
 	var idx = 0;
@@ -88,6 +102,13 @@ func generate_chunk(starting_coords: Vector2):
 			if noise_val > cliff_range[0]:
 				cliff_tiles.append(Vector2i(x,y))
 				var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
+	# update the chunk cache
+	chunk_cache[str(starting_coords)] = {
+		'water_tiles' : water_tiles,
+		'sand_tiles': sand_tiles,
+		'land_tiles': land_tiles,
+		'cliff_tiles': cliff_tiles, 
+	}
 	# set the tiles using the tile arrays
 	tileMap.set_cells_terrain_connect(0, water_tiles, 0, 1);
 	tileMap.set_cells_terrain_connect(0, sand_tiles, 0, 3);
@@ -95,12 +116,23 @@ func generate_chunk(starting_coords: Vector2):
 	tileMap.set_cells_terrain_connect(0, cliff_tiles, 0, 2);
 	all_land_tiles.append_array(land_tiles);
 	# temp logging
-	print('sand tiles: ', sand_tiles.size());
-	print('land tiles: ', land_tiles.size());
-	print('cliff tiles: ', cliff_tiles.size())
-	print('tile count: ', sand_tiles.size() + land_tiles.size() + cliff_tiles.size() + water_tiles.size())
-	print('______________________________________')
-	
+	#print('sand tiles: ', sand_tiles.size());
+	#print('land tiles: ', land_tiles.size());
+	#print('cliff tiles: ', cliff_tiles.size())
+	#print('tile count: ', sand_tiles.size() + land_tiles.size() + cliff_tiles.size() + water_tiles.size())
+	#print('______________________________________')
+
+func get_chunks_in_range():
+	for x in sqrt(chunks):
+		for y in sqrt(chunks):
+			var x_pos_change = (x * width + grid_position.x) - (sqrt(chunks) / 2) * width;
+			var y_pos_change = (y * height + grid_position.y) - (sqrt(chunks) / 2) * height;
+			var new_coord = Vector2i(x_pos_change, y_pos_change);
+
+			if !chunk_cache.has(str(new_coord)):
+				#print('not exists');
+				generate_chunk(new_coord);
+
 func generate_trees():
 	const PINE = preload('res://scenes/trees/pine/pine_tree.tscn');
 	const PLANT1 = preload("res://scenes/trees/plant-1/plant_1.tscn");
