@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy7uudemuu31v"]
+[gd_scene load_steps=8 format=3 uid="uid://cy7uudemuu31v"]
 
 [ext_resource type="Script" path="res://scenes/levels/procedural_world.gd" id="1_5rgc7"]
 [ext_resource type="PackedScene" uid="uid://bh0spe5rrgwhg" path="res://sprites/tilesets/basic_grass.tscn" id="2_c2msu"]
 [ext_resource type="PackedScene" uid="uid://d15iu5smmwocu" path="res://scenes/ui/loading/loading_screen.tscn" id="3_nb1qo"]
+[ext_resource type="Script" path="res://sprites/tilesets/basic_grass.gd" id="3_o8bci"]
 
 [sub_resource type="Gradient" id="Gradient_wr0yp"]
 offsets = PackedFloat32Array(0.0333333, 0.4875, 0.6125, 1)
@@ -25,7 +26,7 @@ noise_height_text = SubResource("NoiseTexture2D_a1668")
 [node name="BasicGrass" parent="." instance=ExtResource("2_c2msu")]
 unique_name_in_owner = true
 z_index = -1
-rendering_quadrant_size = 64
+script = ExtResource("3_o8bci")
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_nb1qo")]
 unique_name_in_owner = true
