@@ -42,8 +42,8 @@ func _physics_process(delta):
 	if player_set:
 		var new_grid_position = tileMap.local_to_map(
 			Vector2i(
-				snapped(Player.player.global_position.x, width * 16), 
-				snapped(Player.player.global_position.y, height * 16))
+				snapped(Player.player.global_position.x, width * 32), 
+				snapped(Player.player.global_position.y, height * 32))
 		);
 		if new_grid_position != grid_position:
 			get_chunks_in_range();
@@ -89,7 +89,6 @@ func generate_chunk(starting_coords: Vector2):
 	var flower_tiles: Array = []
 	for x in range(starting_coords.x, starting_coords.x + width + 1):
 		for y in range(starting_coords.y, starting_coords.y + height + 1):
-			water_tiles.append(Vector2i(x,y))
 			var noise_val = noise.get_noise_2d(x, y);
 			# assign the tiles based off the noise value
 			if noise_val > sand_range[0] && noise_val <= sand_range[1]:
@@ -104,9 +103,11 @@ func generate_chunk(starting_coords: Vector2):
 						plant_1_tiles.append(Vector2i(x,y));
 					'flower':
 						flower_tiles.append(Vector2i(x,y));
-			if noise_val > cliff_range[0]:
+			elif noise_val > cliff_range[0]:
 				cliff_tiles.append(Vector2i(x,y))
 				var adjacent = tileMap.get_surrounding_cells(Vector2i(x,y))
+			else:
+				water_tiles.append(Vector2i(x,y))
 	# update the chunk cache
 	chunk_cache[str(starting_coords)] = {
 		'water_tiles' : water_tiles,
@@ -141,10 +142,10 @@ func generate_trees(coords, noise_val):
 	var jittered_spawn = abs(noise_val / 2) + randf();
 
 	if  jittered_spawn > .97 && jittered_spawn < .98:
-		var new_flower_1 = FLOWER1.instantiate();
-		new_flower_1.global_position = tileMap.map_to_local(coords);
-		new_flower_1.z_index = -1;
-		add_child(new_flower_1);
+		var new_pine = PINE.instantiate();
+		new_pine.global_position = tileMap.map_to_local(coords);
+		new_pine.z_index = -1;
+		add_child(new_pine);
 		return 'tree';
 	elif jittered_spawn > .98 && jittered_spawn < 1:
 		var new_plant_1 = PLANT1.instantiate();
@@ -153,9 +154,9 @@ func generate_trees(coords, noise_val):
 		add_child(new_plant_1);
 		return 'plant';
 	elif jittered_spawn > 1 && jittered_spawn < 1.5:
-		var new_pine = PINE.instantiate();
-		new_pine.global_position =  tileMap.map_to_local(coords);
-		add_child(new_pine);
+		var new_flower = FLOWER1.instantiate();
+		new_flower.global_position =  tileMap.map_to_local(coords);
+		add_child(new_flower);
 		return 'flower';
 		
 		

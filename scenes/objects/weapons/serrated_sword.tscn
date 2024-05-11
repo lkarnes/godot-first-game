@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://st1g88hn1qey"]
+
+[ext_resource type="Texture2D" uid="uid://mghgm4k1if13" path="res://sprites/wepons/seraded blade.png" id="1_hg5fl"]
+
+[node name="SerratedSword" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, -12)
+texture = ExtResource("1_hg5fl")

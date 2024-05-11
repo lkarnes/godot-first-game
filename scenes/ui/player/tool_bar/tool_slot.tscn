@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d8lbglfmktc7"]
+
+[ext_resource type="Texture2D" uid="uid://dikognk5t75cp" path="res://sprites/ui/selected-toolslot.png" id="1_ctooo"]
+
+[node name="ToolSlot" type="Sprite2D"]
+texture = ExtResource("1_ctooo")

@@ -11,14 +11,14 @@ func _physics_process(delta):
 		
 	if is_generating_tile && !current_chunk.is_empty():
 		if current_chunk.has('water_tiles'):
-			set_cells_terrain_connect(0, current_chunk['water_tiles'], 0, 1, false); 
+			#set_cells_terrain_connect(0, current_chunk['water_tiles'], 0, 1, false); 
 			current_chunk.erase('water_tiles');
-		elif current_chunk.has('sand_tiles'):
-			set_cells_terrain_connect(0, current_chunk['sand_tiles'], 0, 3, false); 
-			current_chunk.erase('sand_tiles');
 		elif current_chunk.has('land_tiles'):
 			set_cells_terrain_connect(0, current_chunk['land_tiles'], 0, 0, false); 
 			current_chunk.erase('land_tiles');
+		elif current_chunk.has('sand_tiles'):
+			set_cells_terrain_connect(0, current_chunk['sand_tiles'], 0, 3, false); 
+			current_chunk.erase('sand_tiles');
 		elif current_chunk.has('cliff_tiles'):
 			set_cells_terrain_connect(0, current_chunk['cliff_tiles'], 0, 2, false); 
 			current_chunk.erase('cliff_tiles');
