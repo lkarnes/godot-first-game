@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh0spe5rrgwhg"]
+[gd_scene load_steps=5 format=3 uid="uid://bh0spe5rrgwhg"]
 
 [ext_resource type="Texture2D" uid="uid://b6gabg4njcl8w" path="res://sprites/tileset_wang-grass-water.png" id="1_ryyj2"]
+[ext_resource type="Script" path="res://sprites/tilesets/basic_grass.gd" id="2_tdke1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6diif"]
 texture = ExtResource("1_ryyj2")
@@ -855,3 +856,4 @@ sources/0 = SubResource("TileSetAtlasSource_6diif")
 [node name="BasicGrass" type="TileMap"]
 tile_set = SubResource("TileSet_l3ave")
 format = 2
+script = ExtResource("2_tdke1")
