@@ -41,6 +41,7 @@ func change_slot(old_slot = null):
 			%Slot5.add_child(selection)
 			
 func set_items_to_slots():
-	if Player.player_toolbar.has('1') && %Slot1.get_children().size() < 2:
-		Player.player_toolbar['1'].scale = Vector2(.25,.25);
-		%Slot1.add_child(Player.player_toolbar['1'])
+	pass;
+	#if Player.player_toolbar.has('1') && %Slot1.get_children().size() < 2:
+		#Player.player_toolbar['1'].scale = Vector2(.25,.25);
+		#%Slot1.add_child(Player.player_toolbar['1'])

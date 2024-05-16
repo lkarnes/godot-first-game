@@ -18,3 +18,4 @@ var player_toolbar = {
 func set_position(pos: Vector2 = Vector2.ZERO):
 	if player:
 		player.global_position = pos;
+		player.z_index = 0;

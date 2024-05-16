@@ -32,11 +32,13 @@ func _physics_process(delta):
 	if !terrain_set:
 		%LoadingScreen.loading_text = 'Generating Terrain...'
 		terrain_set = true;
+		get_chunks_in_range()
 	elif !player_set:
 		%LoadingScreen.loading_text = 'Setting Spawn...'
 		player_set = true;
 		Player.set_position(find_spawn_position());
 	elif has_node("LoadingScreen"):
+		print(get_children());
 		remove_child(%LoadingScreen)
 		
 	if player_set:
@@ -45,7 +47,7 @@ func _physics_process(delta):
 				snapped(Player.player.global_position.x, width * 32), 
 				snapped(Player.player.global_position.y, height * 32))
 		);
-		if new_grid_position != grid_position:
+		if new_grid_position != grid_position && terrain_set:
 			get_chunks_in_range();
 			grid_position = new_grid_position;
 		
@@ -75,7 +77,6 @@ func generate_terrain():
 	while unloaded_chunks > 0:
 		unloaded_chunks = unloaded_chunks - 1;
 		generate_chunk(chunk_arr.pop_front())
-		
 
 func generate_chunk(starting_coords: Vector2):
 	# TERRAIN 
@@ -95,6 +96,7 @@ func generate_chunk(starting_coords: Vector2):
 				sand_tiles.append(Vector2i(x,y))
 			elif !( noise_val > cliff_range[0] && noise_val <= cliff_range[1]) && noise_val > sand_range[1]:
 				land_tiles.append(Vector2i(x,y))
+				
 				var resp = generate_trees(Vector2i(x,y), noise_val);
 				match resp:
 					'tree':
@@ -144,18 +146,19 @@ func generate_trees(coords, noise_val):
 	if  jittered_spawn > .97 && jittered_spawn < .98:
 		var new_pine = PINE.instantiate();
 		new_pine.global_position = tileMap.map_to_local(coords);
-		new_pine.z_index = -1;
+		new_pine.z_index = 0;
 		add_child(new_pine);
 		return 'tree';
 	elif jittered_spawn > .98 && jittered_spawn < 1:
-		var new_plant_1 = PLANT1.instantiate();
+		var new_plant_1 = PLANT1.instantiate(); 
 		new_plant_1.global_position = tileMap.map_to_local(coords);
-		new_plant_1.z_index = -1;
+		new_plant_1.z_index = 0;
 		add_child(new_plant_1);
 		return 'plant';
 	elif jittered_spawn > 1 && jittered_spawn < 1.5:
 		var new_flower = FLOWER1.instantiate();
 		new_flower.global_position =  tileMap.map_to_local(coords);
+		new_flower.z_index = 0;
 		add_child(new_flower);
 		return 'flower';
 		

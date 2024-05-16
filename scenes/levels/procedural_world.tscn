@@ -9,7 +9,7 @@ offsets = PackedFloat32Array(0.0333333, 0.4875, 0.6125, 1)
 colors = PackedColorArray(0.394996, 0.178801, 0.0283677, 1, 0, 0.639216, 0, 1, 0.726852, 0.6469, 0.379323, 1, 0, 0.254902, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4vpku"]
-frequency = 0.007
+frequency = 0.0015
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a1668"]
 width = 32
@@ -25,6 +25,7 @@ noise_height_text = SubResource("NoiseTexture2D_a1668")
 [node name="BasicGrass" parent="." instance=ExtResource("2_c2msu")]
 unique_name_in_owner = true
 z_index = -1
+position = Vector2(10, -38)
 rendering_quadrant_size = 64
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_nb1qo")]
