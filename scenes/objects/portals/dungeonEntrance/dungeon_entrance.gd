@@ -4,7 +4,6 @@ extends RigidBody2D
 var entered = false;
 
 func _on_player_in_range_body_entered(body):
-	print('entered');
 	entered = true;
 
 

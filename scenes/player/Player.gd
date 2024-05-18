@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 500;
+const SPEED = 250;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 const WEAPON = preload("res://scenes/objects/weapons/serrated_sword.tscn"); 
 var orientation = 'right';
@@ -47,7 +47,8 @@ func _physics_process(delta):
 			animation_player.play('idle');
 			
 func handle_player_primary():
-	if Player.player_toolbar.has(str(Player.active_tool_slot)) && $PrimaryHand.get_children().size() < 1:
+	print(Player.player_toolbar[str(Player.active_tool_slot)]);
+	if Player.player_toolbar.has(str(Player.active_tool_slot)) && $PrimaryHand.get_children().size() < 2:
 		$PrimaryHand.add_child(Player.player_toolbar[str(Player.active_tool_slot)])
 	
 	
