@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://50pmprld00mh"]
+
+[ext_resource type="Script" path="res://scenes/objects/helpers/loot_magnet.gd" id="1_8hqsy"]
+[ext_resource type="Texture2D" uid="uid://b5f08xiqups8w" path="res://sprites/icon.svg" id="2_21vy0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kdew1"]
+radius = 50.0
+
+[node name="LootMagnet" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_8hqsy")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kdew1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.03125, 0.0546875)
+texture = ExtResource("2_21vy0")

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-func _ready():
-	change_slot();
+#func _ready():
+	#change_slot();
 
 func _physics_process(delta: float):
 	var old_slot = Player.active_tool_slot
@@ -18,15 +18,20 @@ func change_slot(old_slot = null):
 	var selection = SELECTION.instantiate();
 	match old_slot:
 		1:
-			%Slot1.get_node('ToolSlot').queue_free();
+			if %Slot1.get_node('ToolSlot'):
+				%Slot1.get_node('ToolSlot').queue_free();
 		2:
-			%Slot2.get_node('ToolSlot').queue_free();
+			if %Slot2.get_node('ToolSlot'):
+				%Slot2.get_node('ToolSlot').queue_free();
 		3:
-			%Slot3.get_node('ToolSlot').queue_free();
+			if %Slot3.get_node('ToolSlot'):
+				%Slot3.get_node('ToolSlot').queue_free();
 		4:
-			%Slot4.get_node('ToolSlot').queue_free();
+			if %Slot4.get_node('ToolSlot'):
+				%Slot4.get_node('ToolSlot').queue_free();
 		5:
-			%Slot5.get_node('ToolSlot').queue_free();
+			if %Slot5.get_node('ToolSlot'):
+				%Slot5.get_node('ToolSlot').queue_free();
 			
 	match Player.active_tool_slot:
 		1:
@@ -39,9 +44,32 @@ func change_slot(old_slot = null):
 			%Slot4.add_child(selection)
 		5:
 			%Slot5.add_child(selection)
+	handle_item_swap()
 			
 func set_items_to_slots():
-	pass;
-	#if Player.player_toolbar.has('1') && %Slot1.get_children().size() < 2:
-		#Player.player_toolbar['1'].scale = Vector2(.25,.25);
-		#%Slot1.add_child(Player.player_toolbar['1'])
+	if Player.player_toolbar['1'] != null && %Slot1.get_children().size() < 2:
+		var weapon_texture: CompressedTexture2D = Player.player_toolbar['1'].get_node('Sprite2D').texture;
+		%Slot1/Sprite2D.texture = weapon_texture;
+	elif Player.player_toolbar['2'] != null && %Slot1.get_children().size() < 2:
+		var weapon_texture: CompressedTexture2D = Player.player_toolbar['2'].get_node('Sprite2D').texture;
+		%Slot1/Sprite2D.texture = weapon_texture;
+	elif Player.player_toolbar['3'] != null && %Slot1.get_children().size() < 2:
+		var weapon_texture: CompressedTexture2D = Player.player_toolbar['3'].get_node('Sprite2D').texture;
+		%Slot1/Sprite2D.texture = weapon_texture;
+	elif Player.player_toolbar['4'] != null && %Slot1.get_children().size() < 2:
+		var weapon_texture: CompressedTexture2D = Player.player_toolbar['4'].get_node('Sprite2D').texture;
+		%Slot1/Sprite2D.texture = weapon_texture;
+	elif Player.player_toolbar['5'] != null && %Slot1.get_children().size() < 2:
+		var weapon_texture: CompressedTexture2D = Player.player_toolbar['5'].get_node('Sprite2D').texture;
+		%Slot1/Sprite2D.texture = weapon_texture;
+		
+func handle_item_swap():
+	var active_slot = str(Player.active_tool_slot)
+	var player_primary: Marker2D = Player.player.get_node('PrimaryHand');
+	print('player_primary', player_primary);
+	if player_primary.get_child(0):
+		player_primary.remove_child(player_primary.get_child(0))
+	var item = Player.player_toolbar[active_slot];
+	if item:
+		player_primary.add_child(item);
+	

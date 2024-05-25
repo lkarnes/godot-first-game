@@ -34,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot1"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 
 [node name="Slot2" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
 unique_name_in_owner = true
@@ -48,9 +48,6 @@ offset_top = -3.02
 offset_right = -53.16
 offset_bottom = -17.0
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot2"]
-scale = Vector2(0.3, 0.3)
-
 [node name="Slot3" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
 unique_name_in_owner = true
 anchors_preset = -1
@@ -62,9 +59,6 @@ offset_left = -39.008
 offset_top = -3.0
 offset_right = -52.992
 offset_bottom = -17.0
-
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot3"]
-scale = Vector2(0.3, 0.3)
 
 [node name="Slot4" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
 unique_name_in_owner = true
@@ -78,9 +72,6 @@ offset_top = -3.02
 offset_right = -53.024
 offset_bottom = -16.98
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot4"]
-scale = Vector2(0.3, 0.3)
-
 [node name="Slot5" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
 unique_name_in_owner = true
 anchors_preset = -1
@@ -92,6 +83,3 @@ offset_left = -38.78
 offset_top = -3.0
 offset_right = -52.764
 offset_bottom = -17.0
-
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot5"]
-scale = Vector2(0.3, 0.3)

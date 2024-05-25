@@ -38,7 +38,6 @@ func _physics_process(delta):
 		player_set = true;
 		Player.set_position(find_spawn_position());
 	elif has_node("LoadingScreen"):
-		print(get_children());
 		remove_child(%LoadingScreen)
 		
 	if player_set:

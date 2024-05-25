@@ -7,7 +7,6 @@ var orientation = 'right';
 var in_animation = false;
 
 func _physics_process(delta):
-	handle_player_primary()
 	if !Player.player:
 		Player.player = self;
 		var weapon = WEAPON.instantiate();
@@ -46,10 +45,6 @@ func _physics_process(delta):
 		else:
 			animation_player.play('idle');
 			
-func handle_player_primary():
-	print(Player.player_toolbar[str(Player.active_tool_slot)]);
-	if Player.player_toolbar.has(str(Player.active_tool_slot)) && $PrimaryHand.get_children().size() < 2:
-		$PrimaryHand.add_child(Player.player_toolbar[str(Player.active_tool_slot)])
-	
+
 	
 	

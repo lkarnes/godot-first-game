@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://q1aw8rw7qfqt"]
+[gd_scene load_steps=10 format=3 uid="uid://q1aw8rw7qfqt"]
 
 [ext_resource type="PackedScene" uid="uid://bh0spe5rrgwhg" path="res://sprites/tilesets/basic_grass.tscn" id="1_o1fbc"]
 [ext_resource type="PackedScene" uid="uid://bupbsknaasd2k" path="res://sprites/tilesets/buildings.tscn" id="2_kqrp6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cjhprggu8sjlu" path="res://scenes/objects/portals/dungeonEntrance/dungeon_entrance.tscn" id="6_0i00d"]
 [ext_resource type="PackedScene" uid="uid://cy7uudemuu31v" path="res://scenes/levels/procedural_world.tscn" id="7_kk3uf"]
 [ext_resource type="PackedScene" uid="uid://qyfel8cg3162" path="res://scenes/levels/dungeon1.tscn" id="8_e2fco"]
+[ext_resource type="PackedScene" uid="uid://50pmprld00mh" path="res://scenes/objects/helpers/loot_magnet.tscn" id="9_kyvrv"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -70,3 +71,6 @@ next_scene = ExtResource("7_kk3uf")
 [node name="DungeonEntrance" parent="." instance=ExtResource("6_0i00d")]
 position = Vector2(-324, -74)
 next_scene = ExtResource("8_e2fco")
+
+[node name="LootMagnet" parent="." instance=ExtResource("9_kyvrv")]
+position = Vector2(104, 59)
