@@ -7,7 +7,7 @@ var orientation = 'right';
 var in_animation = false;
 
 func _physics_process(delta):
-	if !Player.player:
+	if !Player.player || !is_instance_valid(Player.player):
 		Player.player = self;
 		var weapon = WEAPON.instantiate();
 		Player.player_toolbar['1'] = weapon;

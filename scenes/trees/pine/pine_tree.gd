@@ -15,8 +15,17 @@ func handle_death():
 	animation_player.play('death');
 	await animation_player.animation_finished;
 	drop_loot();
-	queue_free();
 
 func drop_loot():
-	print('dropping_loot');
+	var drop_amount = 3;
+	for i in range(0,drop_amount):
+		const LOOT_MAGNET = preload('res://scenes/objects/helpers/loot_magnet.tscn');
+		const LOG = preload("res://scenes/objects/items/log/log.tscn");
+		var magnet = LOOT_MAGNET.instantiate();
+		var log = LOG.instantiate();
+		magnet.item = log;
+		magnet.global_position = global_position;
+		get_parent().add_child(magnet);
+		queue_free();
+	
 	

@@ -3,8 +3,9 @@ extends CharacterBody2D
 @export var magnetic_force: float = 800.0
 @export var detection_radius: float = 50.0
 @export var attraction_speed: float = 200.0
+@export var item: Node;
 
-var player = null
+var player_body = null
 
 func _ready():
 	# Adjust the magnetic area collision shape size
@@ -15,20 +16,24 @@ func _ready():
 	%Area2D.connect("body_exited", self._on_body_exited)
 
 func _on_body_entered(body):
-	print('entered:', body.name);
 	if body.name == 'Player':
-		player = body
+		player_body = body
 
 func _on_body_exited(body):
-	if body == player:
-		player = null
+	if  body.name == 'Player':
+		player_body = null
 
 func _physics_process(delta):
-	if player:
-		var direction = (player.global_position - global_position).normalized()
-		var distance = player.global_position.distance_to(global_position);
+	if item && get_children().size() < 2:
+		add_child(item)
+	if player_body:
+		var direction = (player_body.global_position - global_position).normalized()
+		var distance = player_body.global_position.distance_to(global_position);
 		velocity = direction * attraction_speed
 		move_and_slide()
 		
 		if distance < 2:
-			queue_free()
+			var response = Player.add_to_player_inventory(item);
+			if response:
+				remove_child(item);
+				queue_free();

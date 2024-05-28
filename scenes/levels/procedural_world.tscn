@@ -25,8 +25,7 @@ noise_height_text = SubResource("NoiseTexture2D_a1668")
 [node name="BasicGrass" parent="." instance=ExtResource("2_c2msu")]
 unique_name_in_owner = true
 z_index = -1
-position = Vector2(10, -38)
-rendering_quadrant_size = 64
+position = Vector2(0, 0)
 
 [node name="LoadingScreen" parent="." instance=ExtResource("3_nb1qo")]
 unique_name_in_owner = true

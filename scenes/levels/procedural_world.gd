@@ -39,8 +39,7 @@ func _physics_process(delta):
 		Player.set_position(find_spawn_position());
 	elif has_node("LoadingScreen"):
 		remove_child(%LoadingScreen)
-		
-	if player_set:
+	elif player_set:
 		var new_grid_position = tileMap.local_to_map(
 			Vector2i(
 				snapped(Player.player.global_position.x, width * 32), 
@@ -145,19 +144,16 @@ func generate_trees(coords, noise_val):
 	if  jittered_spawn > .97 && jittered_spawn < .98:
 		var new_pine = PINE.instantiate();
 		new_pine.global_position = tileMap.map_to_local(coords);
-		new_pine.z_index = 0;
 		add_child(new_pine);
 		return 'tree';
 	elif jittered_spawn > .98 && jittered_spawn < 1:
 		var new_plant_1 = PLANT1.instantiate(); 
 		new_plant_1.global_position = tileMap.map_to_local(coords);
-		new_plant_1.z_index = 0;
 		add_child(new_plant_1);
 		return 'plant';
 	elif jittered_spawn > 1 && jittered_spawn < 1.5:
 		var new_flower = FLOWER1.instantiate();
 		new_flower.global_position =  tileMap.map_to_local(coords);
-		new_flower.z_index = 0;
 		add_child(new_flower);
 		return 'flower';
 		
