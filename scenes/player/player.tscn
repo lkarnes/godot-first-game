@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://qfstn2ty1n2p"]
+[gd_scene load_steps=14 format=3 uid="uid://qfstn2ty1n2p"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_ogdj1"]
 [ext_resource type="Texture2D" uid="uid://c84q8sgfbfvrn" path="res://sprites/player/base-player-Sheet.png" id="2_5tswq"]
 [ext_resource type="Script" path="res://scripts/MyHurtBox.gd" id="3_cpcar"]
 [ext_resource type="PackedScene" uid="uid://kipa8es3mgcu" path="res://scenes/ui/player/tool_bar/tool_bar.tscn" id="3_uykg4"]
+[ext_resource type="PackedScene" uid="uid://dyy7ssh850m0l" path="res://scenes/ui/player/inventory/Inventory.tscn" id="5_22qah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5y4mm"]
 radius = 4.0
@@ -307,7 +308,11 @@ zoom = Vector2(3, 3)
 
 [node name="ToolBar" parent="." instance=ExtResource("3_uykg4")]
 
+[node name="Inventory" parent="." instance=ExtResource("5_22qah")]
+z_index = 1
+scale = Vector2(2, 2)
+
 [node name="PrimaryHand" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-9, -7)
+position = Vector2(-8, -7)
 rotation = -0.349066
