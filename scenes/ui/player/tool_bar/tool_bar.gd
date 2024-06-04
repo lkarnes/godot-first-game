@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends ReferenceRect
 
 #func _ready():
 	#change_slot();

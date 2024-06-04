@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://kipa8es3mgcu"]
+
+[ext_resource type="PackedScene" uid="uid://daucfhktmchbj" path="res://scenes/ui/player/tool_bar/tool_bar.tscn" id="1_4bmir"]
+[ext_resource type="PackedScene" uid="uid://dyy7ssh850m0l" path="res://scenes/ui/player/inventory/Inventory.tscn" id="2_6uuiv"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="Toolbar" parent="." instance=ExtResource("1_4bmir")]
+
+[node name="Inventory" parent="." instance=ExtResource("2_6uuiv")]

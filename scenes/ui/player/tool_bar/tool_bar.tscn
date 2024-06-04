@@ -1,25 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://kipa8es3mgcu"]
+[gd_scene load_steps=3 format=3 uid="uid://daucfhktmchbj"]
 
-[ext_resource type="Script" path="res://scenes/ui/player/tool_bar/tool_bar.gd" id="1_k17ga"]
-[ext_resource type="Texture2D" uid="uid://t3h6387b5whx" path="res://sprites/ui/tool-bar.png" id="1_lv5pd"]
+[ext_resource type="Script" path="res://scenes/ui/player/tool_bar/tool_bar.gd" id="1_j8oki"]
+[ext_resource type="Texture2D" uid="uid://t3h6387b5whx" path="res://sprites/ui/tool-bar.png" id="1_saakt"]
 
-[node name="ToolBar" type="CanvasLayer"]
-script = ExtResource("1_k17ga")
-
-[node name="ToolbarAnchor" type="ReferenceRect" parent="."]
+[node name="Toolbar" type="ReferenceRect"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
+script = ExtResource("1_j8oki")
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor"]
+[node name="Frame" type="Sprite2D" parent="."]
 position = Vector2(246, -26)
 scale = Vector2(5, 5)
-texture = ExtResource("1_lv5pd")
+texture = ExtResource("1_saakt")
 
-[node name="Slot1" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
+[node name="Slot1" type="ReferenceRect" parent="Frame"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.033
@@ -32,11 +30,12 @@ offset_right = -52.836
 offset_bottom = -16.9
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot1"]
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot1"]
 scale = Vector2(0.3, 0.3)
 
-[node name="Slot2" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
+[node name="Slot2" type="ReferenceRect" parent="Frame"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.228
@@ -47,11 +46,12 @@ offset_left = -39.176
 offset_top = -3.02
 offset_right = -53.16
 offset_bottom = -17.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot2"]
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot2"]
 scale = Vector2(0.3, 0.3)
 
-[node name="Slot3" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
+[node name="Slot3" type="ReferenceRect" parent="Frame"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.424
@@ -62,11 +62,12 @@ offset_left = -39.008
 offset_top = -3.0
 offset_right = -52.992
 offset_bottom = -17.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot3"]
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot3"]
 scale = Vector2(0.3, 0.3)
 
-[node name="Slot4" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
+[node name="Slot4" type="ReferenceRect" parent="Frame"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.62
@@ -77,11 +78,12 @@ offset_left = -39.04
 offset_top = -3.02
 offset_right = -53.024
 offset_bottom = -16.98
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot4"]
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot4"]
 scale = Vector2(0.3, 0.3)
 
-[node name="Slot5" type="ReferenceRect" parent="ToolbarAnchor/Sprite2D"]
+[node name="Slot5" type="ReferenceRect" parent="Frame"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.815
@@ -92,6 +94,7 @@ offset_left = -38.78
 offset_top = -3.0
 offset_right = -52.764
 offset_bottom = -17.0
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="ToolbarAnchor/Sprite2D/Slot5"]
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot5"]
 scale = Vector2(0.3, 0.3)

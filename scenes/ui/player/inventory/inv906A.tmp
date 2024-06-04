@@ -1,9 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://btlmltiwqwqsm"]
+[gd_scene load_steps=3 format=3 uid="uid://btlmltiwqwqsm"]
 
 [ext_resource type="Texture2D" uid="uid://tbt7ks13bi37" path="res://sprites/ui/inventory-slot.png" id="1_h62xv"]
 [ext_resource type="Script" path="res://scenes/ui/player/inventory/inv_slot.gd" id="1_yilgy"]
-
-[sub_resource type="SystemFont" id="SystemFont_ay6dg"]
 
 [node name="inv_slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -20,14 +18,3 @@ centered = false
 unique_name_in_owner = true
 offset_right = 16.0
 offset_bottom = 16.0
-
-[node name="Label" type="Label" parent="Sprite2D"]
-unique_name_in_owner = true
-offset_left = 2.0
-offset_top = 11.0
-offset_right = 402.0
-offset_bottom = 148.0
-scale = Vector2(0.03, 0.03)
-theme_override_fonts/font = SubResource("SystemFont_ay6dg")
-theme_override_font_sizes/font_size = 100
-horizontal_alignment = 2
