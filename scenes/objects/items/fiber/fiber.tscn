@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1nh0vxgtomeu"]
+
+[ext_resource type="Texture2D" uid="uid://cfh4txyld72l5" path="res://sprites/foliage/plant/fiber.png" id="1_daxsg"]
+
+[node name="Fiber" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_daxsg")

@@ -13,7 +13,7 @@ func _on_area_entered(hitbox: Area2D):
 	if hitbox == null:
 		return
 
-	if owner.has_method("take_damage"):
+	if owner.has_method("take_damage") && !hitbox.disabled:
 		const HITPOINT = preload('res://scenes/ui/player/hit_point_display/HitPoint.tscn')
 		var hitpoint = HITPOINT.instantiate()
 		hitpoint.value = hitbox.damage_points

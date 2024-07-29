@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://drb5ywl8rdmw4"]
+
+[ext_resource type="Script" path="res://scenes/objects/projectiles/fire_ball_1.gd" id="1_spke1"]
+[ext_resource type="Texture2D" uid="uid://cerm3f1tt0pb" path="res://sprites/wepons/projectiles/basic_fireball.png" id="2_7afj3"]
+[ext_resource type="PackedScene" uid="uid://cqjpoh4b6vgt2" path="res://sprites/wepons/projectiles/fireball_particles.tscn" id="3_rihnm"]
+
+[sub_resource type="Animation" id="Animation_tvf68"]
+resource_name = "rotate"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imew0"]
+_data = {
+"rotate": SubResource("Animation_tvf68")
+}
+
+[node name="FireBall1" type="Area2D"]
+z_index = 1
+script = ExtResource("1_spke1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7afj3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_imew0")
+}
+
+[node name="FireballParticles" parent="." instance=ExtResource("3_rihnm")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

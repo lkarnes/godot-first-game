@@ -6,6 +6,7 @@ var health: float = 100;
 var mana: float = 100;
 var position: Vector2 = Vector2.ZERO
 var active_tool_slot: int = 1;
+var is_submerged = true;
 
 var player_toolbar: Dictionary = {
 	'1': null,

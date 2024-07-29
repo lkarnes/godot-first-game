@@ -55,80 +55,60 @@ columns = 5
 
 [node name="inv_slot1" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot2" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot3" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot4" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot5" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot6" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot7" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot8" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot9" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot10" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot11" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot12" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot13" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot14" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot15" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot16" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot17" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot18" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot19" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []
 
 [node name="inv_slot20" parent="NinePatchRect/GridContainer" instance=ExtResource("3_hygjc")]
 layout_mode = 2
-item_arr = []

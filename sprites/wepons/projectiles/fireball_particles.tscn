@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqjpoh4b6vgt2"]
+
+[ext_resource type="Texture2D" uid="uid://bj4r2fu8uxeex" path="res://sprites/wepons/projectiles/fire_particle_1.png" id="1_0ws7f"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7w0f6"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 4.0
+emission_ring_radius = 2.0
+emission_ring_inner_radius = 1.0
+angle_max = 360.0
+spread = 180.0
+initial_velocity_max = 100.0
+angular_velocity_max = 1.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 1.25
+turbulence_enabled = true
+turbulence_noise_strength = 0.04
+turbulence_noise_scale = 1.0
+turbulence_noise_speed_random = 0.07
+turbulence_initial_displacement_min = -45.3
+turbulence_initial_displacement_max = 37.6
+
+[node name="FireballParticles" type="GPUParticles2D"]
+scale = Vector2(1.01218, 1)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_7w0f6")
+texture = ExtResource("1_0ws7f")
+lifetime = 10.0
+randomness = 0.5
+fixed_fps = 20
+trail_lifetime = 0.1

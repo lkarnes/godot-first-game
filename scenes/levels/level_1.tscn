@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://q1aw8rw7qfqt"]
+[gd_scene load_steps=10 format=3 uid="uid://q1aw8rw7qfqt"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_6tmgq"]
 [ext_resource type="PackedScene" uid="uid://bh0spe5rrgwhg" path="res://sprites/tilesets/basic_grass.tscn" id="1_o1fbc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cjhprggu8sjlu" path="res://scenes/objects/portals/dungeonEntrance/dungeon_entrance.tscn" id="6_0i00d"]
 [ext_resource type="PackedScene" uid="uid://cy7uudemuu31v" path="res://scenes/levels/procedural_world.tscn" id="7_kk3uf"]
 [ext_resource type="PackedScene" uid="uid://qyfel8cg3162" path="res://scenes/levels/dungeon1.tscn" id="8_e2fco"]
+[ext_resource type="PackedScene" uid="uid://2t2oq3kitvec" path="res://scenes/trees/plant-1/plant_1.tscn" id="9_lkjhv"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -47,3 +48,27 @@ position = Vector2(-123, -96)
 
 [node name="PineTree4" parent="." instance=ExtResource("2_s8c1x")]
 position = Vector2(37, -17)
+
+[node name="Plant1" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(29, 60)
+
+[node name="Plant2" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(77, 63)
+
+[node name="Plant3" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(29, 101)
+
+[node name="Plant4" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(75, 139)
+
+[node name="Plant5" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(98, 99)
+
+[node name="Plant6" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(-30, 144)
+
+[node name="Plant7" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(-20, 86)
+
+[node name="Plant8" parent="." instance=ExtResource("9_lkjhv")]
+position = Vector2(27, 154)

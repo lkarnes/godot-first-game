@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo6oxgqlfd6ba"
-path="res://.godot/imported/plant-1.png-c7a8961aeea529e350415eae71749d70.ctex"
+uid="uid://cerm3f1tt0pb"
+path="res://.godot/imported/basic_fireball.png-efa61f6525e2e20371ef0c95a4276f0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tilesets/building/plant-1.png"
-dest_files=["res://.godot/imported/plant-1.png-c7a8961aeea529e350415eae71749d70.ctex"]
+source_file="res://sprites/wepons/projectiles/basic_fireball.png"
+dest_files=["res://.godot/imported/basic_fireball.png-efa61f6525e2e20371ef0c95a4276f0c.ctex"]
 
 [params]
 

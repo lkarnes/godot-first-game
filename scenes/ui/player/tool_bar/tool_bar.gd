@@ -66,7 +66,6 @@ func set_items_to_slots():
 func handle_item_swap():
 	var active_slot = str(Player.active_tool_slot)
 	var player_primary: Marker2D = Player.player.get_node('PrimaryHand');
-	print('player_primary', player_primary);
 	if player_primary.get_child(0):
 		player_primary.remove_child(player_primary.get_child(0))
 	var item = Player.player_toolbar[active_slot];

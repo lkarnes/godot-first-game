@@ -807,6 +807,7 @@ texture = ExtResource("1_ryyj2")
 5:0/animation_frame_2/duration = 1.0
 5:0/0 = 0
 5:0/0/z_index = -1
+5:0/0/y_sort_origin = -5
 5:0/0/terrain_set = 0
 5:0/0/terrain = 1
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
