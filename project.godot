@@ -19,6 +19,7 @@ config/icon="res://sprites/icon.svg"
 
 NavFunctions="*res://singletons/nav_functions.gd"
 Player="*res://singletons/Player.gd"
+Actions="*res://singletons/actions.gd"
 
 [input]
 

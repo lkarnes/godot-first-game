@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://qfstn2ty1n2p"]
+[gd_scene load_steps=17 format=3 uid="uid://qfstn2ty1n2p"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.gd" id="1_ogdj1"]
 [ext_resource type="Texture2D" uid="uid://c84q8sgfbfvrn" path="res://sprites/player/base-player-Sheet.png" id="2_5tswq"]
 [ext_resource type="Script" path="res://scripts/MyHurtBox.gd" id="3_cpcar"]
 [ext_resource type="PackedScene" uid="uid://kipa8es3mgcu" path="res://scenes/ui/player/tool_bar/gui.tscn" id="4_mpbod"]
 [ext_resource type="PackedScene" uid="uid://cwsc1o5rpsk5b" path="res://scenes/ui/cursor/cursor.tscn" id="5_tubn4"]
-[ext_resource type="PackedScene" uid="uid://st1g88hn1qey" path="res://scenes/objects/weapons/serrated_sword.tscn" id="6_8ba6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5y4mm"]
 radius = 4.0
@@ -276,7 +275,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_3iphe"]
 resource_name = "swing_left"
 length = 0.4
-loop_mode = 1
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -309,10 +307,10 @@ tracks/2/path = NodePath("%PrimaryHand:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-7, -23), Vector2(-10, -22), Vector2(-12, -6), Vector2(-12, -6), Vector2(-12, -6)]
+"values": [Vector2(-7, -23), Vector2(-10, -22), Vector2(-12, -6), Vector2(-12, -6)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -322,9 +320,9 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1.25, 10),
+"transitions": PackedFloat32Array(1.25, 1),
 "update": 0,
-"values": [0.0, -3.92699]
+"values": [0.0, -3.83972]
 }
 
 [sub_resource type="Animation" id="Animation_gsp73"]
@@ -349,10 +347,10 @@ tracks/1/path = NodePath("%PrimaryHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-8, -23), Vector2(6, -20), Vector2(12, -6), Vector2(12, -6), Vector2(12, -6)]
+"values": [Vector2(-8, -23), Vector2(6, -20), Vector2(12, -6), Vector2(12, -6)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -362,9 +360,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 10),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.5708, 2.35619]
+"values": [-1.5708, 2.70526]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feryc"]
@@ -400,8 +398,8 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
 texture = ExtResource("2_5tswq")
+flip_h = true
 hframes = 13
-frame = 10
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -12)
@@ -422,10 +420,8 @@ zoom = Vector2(3, 3)
 
 [node name="PrimaryHand" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-11.366, -11.0721)
-rotation = -1.33072
-
-[node name="SerratedSword" parent="PrimaryHand" instance=ExtResource("6_8ba6w")]
+position = Vector2(-7, -7)
+rotation = -0.349066
 
 [node name="ProjectileSummonPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true

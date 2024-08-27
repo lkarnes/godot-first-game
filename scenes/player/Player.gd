@@ -3,14 +3,11 @@ extends CharacterBody2D
 const SPEED = 250;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 const WEAPON = preload("res://scenes/objects/weapons/serrated_sword.tscn"); 
-var orientation = 'right';
 var in_animation = false;
 
 func _physics_process(delta):
 	if !Player.player || !is_instance_valid(Player.player):
 		Player.player = self;
-		var weapon = WEAPON.instantiate();
-		Player.player_toolbar['1'] = weapon;
 	var primary_attack = Input.is_action_just_pressed('primary_attack');
 	var secondary_attack = Input.is_action_just_pressed('secondary_attack');
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down");
@@ -19,9 +16,9 @@ func _physics_process(delta):
 	var mouse_direction = get_mouse_direction();
 	
 	if 'left' in mouse_direction:
-		orientation = 'left';
+		Player.orientation = 'left';
 	elif 'right' in mouse_direction:
-		orientation = 'right';
+		Player.orientation = 'right';
 	if !in_animation:
 		var item_in_hand = %PrimaryHand.get_child(0);
 		if item_in_hand && item_in_hand.get_node('HitBox'):
@@ -35,7 +32,7 @@ func _physics_process(delta):
 	
 func handle_animations(primary_attack, secondary_attack, direction):
 	if primary_attack && animation_player.animation_finished:
-		if orientation == 'left':
+		if Player.orientation == 'left':
 			in_animation = true;
 			animation_player.play('swing_left');
 			await animation_player.animation_finished;
@@ -48,9 +45,8 @@ func handle_animations(primary_attack, secondary_attack, direction):
 	if secondary_attack && animation_player.animation_finished:
 		const PROJECTILE = preload('res://scenes/objects/projectiles/fire_ball_1.tscn');
 		var projectile = PROJECTILE.instantiate()
-		add_child(projectile);
 		projectile.global_position = %ProjectileSummonPoint.global_position;
-		print('fire: ', projectile.global_position);
+		get_parent().add_child(projectile);
 	
 	if !primary_attack && !secondary_attack && !in_animation:
 		if direction.x < 0:
@@ -58,12 +54,12 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		elif direction.x > 0:
 			animation_player.play('run_right');
 		elif direction.y != 0:
-			if orientation == 'left':
+			if Player.orientation == 'left':
 				animation_player.play('run_left');
 			else:
 				animation_player.play('run_right');
 		else:
-			animation_player.play('idle-' + orientation);
+			animation_player.play('idle-' + Player.orientation);
 	
 func get_mouse_direction():
 	var mouse_pos = get_global_mouse_position()

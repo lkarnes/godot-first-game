@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var attraction_speed: float = 200.0
 @export var item: Node;
 
-var player_body = null
+var player_body = null;
+var timer_completed = false;
+var item_added = false;
 
 func _ready():
 	# Adjust the magnetic area collision shape size
@@ -24,16 +26,22 @@ func _on_body_exited(body):
 		player_body = null
 
 func _physics_process(delta):
-	if item && get_children().size() < 2:
-		add_child(item)
-	if player_body:
+	if item && !item_added:
+		add_child(item);
+		item_added = true;
+	
+	if player_body && timer_completed:
 		var direction = (player_body.global_position - global_position).normalized()
 		var distance = player_body.global_position.distance_to(global_position);
 		velocity = direction * attraction_speed
-		move_and_slide()
-		
+		move_and_slide();
 		if distance < 2:
 			var response = Player.add_to_player_inventory(item);
+			print(response)
 			if response:
 				remove_child(item);
 				queue_free();
+
+# adds a delay where the item cannot be picked up
+func _on_timer_timeout():
+	timer_completed = true;

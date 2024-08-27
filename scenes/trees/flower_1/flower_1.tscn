@@ -1,14 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5cul107781i"]
+[gd_scene load_steps=8 format=3 uid="uid://bi5cul107781i"]
 
 [ext_resource type="Texture2D" uid="uid://cclosp2vetg4h" path="res://sprites/tilesets/building/flower-1.png" id="1_61eyg"]
+[ext_resource type="Script" path="res://scenes/trees/flower_1/flower_1.gd" id="1_f13f6"]
+[ext_resource type="Script" path="res://scripts/MyHurtBox.gd" id="2_y0qos"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ttfmh"]
-radius = 5.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hb54"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_3gnws"]
+resource_name = "death"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tu1md"]
+resource_name = "hit"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.10472]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g87ad"]
+_data = {
+"death": SubResource("Animation_3gnws"),
+"hit": SubResource("Animation_tu1md")
+}
 
 [node name="Flower1" type="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ttfmh")
+script = ExtResource("1_f13f6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_61eyg")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_y0qos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_5hb54")
+debug_color = Color(0.909804, 0.231373, 0.490196, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_g87ad")
+}

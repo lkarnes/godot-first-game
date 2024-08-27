@@ -1,7 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://st1g88hn1qey"]
 
 [ext_resource type="Texture2D" uid="uid://mghgm4k1if13" path="res://sprites/wepons/seraded blade.png" id="1_hg5fl"]
-[ext_resource type="Script" path="res://scripts/MyHitBox.gd" id="2_g6bny"]
+
+[sub_resource type="GDScript" id="GDScript_wtwb0"]
+script/source = "extends Area2D
+
+#class_name MyHitBox
+
+@export var damage_points: int = 40
+@export var disabled: bool = true;
+
+func _init():
+	collision_layer = 2
+	collision_mask = 0
+
+func set_disabled_val(val):
+	disabled = val;
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt2ba"]
 size = Vector2(5.65686, 30.7591)
@@ -13,9 +28,7 @@ position = Vector2(12, -12)
 texture = ExtResource("1_hg5fl")
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_mask = 3
-script = ExtResource("2_g6bny")
-collision_arr = [2]
+script = SubResource("GDScript_wtwb0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(14.875, -14.875)

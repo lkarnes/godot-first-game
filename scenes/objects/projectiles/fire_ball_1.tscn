@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://drb5ywl8rdmw4"]
+[gd_scene load_steps=8 format=3 uid="uid://drb5ywl8rdmw4"]
 
+[ext_resource type="Script" path="res://scripts/MyHitBox.gd" id="1_chyj5"]
 [ext_resource type="Script" path="res://scenes/objects/projectiles/fire_ball_1.gd" id="1_spke1"]
 [ext_resource type="Texture2D" uid="uid://cerm3f1tt0pb" path="res://sprites/wepons/projectiles/basic_fireball.png" id="2_7afj3"]
 [ext_resource type="PackedScene" uid="uid://cqjpoh4b6vgt2" path="res://sprites/wepons/projectiles/fireball_particles.tscn" id="3_rihnm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_of3k6"]
+radius = 4.12311
 
 [sub_resource type="Animation" id="Animation_tvf68"]
 resource_name = "rotate"
@@ -27,8 +31,21 @@ _data = {
 }
 
 [node name="FireBall1" type="Area2D"]
-z_index = 1
+collision_layer = 0
+collision_mask = 0
+gravity_point = true
+gravity_point_unit_distance = 2.389
 script = ExtResource("1_spke1")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("1_chyj5")
+damage_points = 20
+disabled = false
+collision_arr = [3]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_of3k6")
+debug_color = Color(0.988235, 0, 0.282353, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7afj3")

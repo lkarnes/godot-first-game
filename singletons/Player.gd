@@ -7,10 +7,11 @@ var mana: float = 100;
 var position: Vector2 = Vector2.ZERO
 var active_tool_slot: int = 1;
 var is_submerged = true;
+var orientation = 'left';
 
 var player_toolbar: Dictionary = {
-	'1': null,
-	'2': null,
+	'1':  preload("res://scenes/objects/weapons/serrated_sword.tscn").instantiate(),
+	'2':  preload("res://scenes/objects/tools/hatchet.tscn").instantiate(),
 	'3': null,
 	'4': null,
 	'5': null,
@@ -34,3 +35,4 @@ func add_to_player_inventory(item):
 		return true;
 	return false;
 			
+

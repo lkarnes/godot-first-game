@@ -7,13 +7,15 @@
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_left = 16.0
+offset_top = -115.0
+offset_right = 476.0
+offset_bottom = -15.0
 grow_vertical = 0
 script = ExtResource("1_j8oki")
 
 [node name="Frame" type="Sprite2D" parent="."]
-position = Vector2(246, -26)
+position = Vector2(230, 50)
 scale = Vector2(5, 5)
 texture = ExtResource("1_saakt")
 

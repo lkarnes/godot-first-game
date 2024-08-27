@@ -1,7 +1,5 @@
 extends ReferenceRect
 
-#func _ready():
-	#change_slot();
 
 func _physics_process(delta: float):
 	var old_slot = Player.active_tool_slot
@@ -16,6 +14,7 @@ func _physics_process(delta: float):
 func change_slot(old_slot = null):
 	const SELECTION = preload('res://scenes/ui/player/tool_bar/tool_slot.tscn');
 	var selection = SELECTION.instantiate();
+	print(Player.player_toolbar)
 	match old_slot:
 		1:
 			if %Slot1.get_node('ToolSlot'):
@@ -50,25 +49,25 @@ func set_items_to_slots():
 	if Player.player_toolbar['1'] != null && %Slot1.get_children().size() < 2:
 		var weapon_texture: CompressedTexture2D = Player.player_toolbar['1'].get_node('Sprite2D').texture;
 		%Slot1/Sprite2D.texture = weapon_texture;
-	elif Player.player_toolbar['2'] != null && %Slot1.get_children().size() < 2:
+	if Player.player_toolbar['2'] != null && %Slot2.get_children().size() < 2:
 		var weapon_texture: CompressedTexture2D = Player.player_toolbar['2'].get_node('Sprite2D').texture;
-		%Slot1/Sprite2D.texture = weapon_texture;
-	elif Player.player_toolbar['3'] != null && %Slot1.get_children().size() < 2:
+		%Slot2/Sprite2D.texture = weapon_texture;
+	if Player.player_toolbar['3'] != null && %Slot3.get_children().size() < 2:
 		var weapon_texture: CompressedTexture2D = Player.player_toolbar['3'].get_node('Sprite2D').texture;
-		%Slot1/Sprite2D.texture = weapon_texture;
-	elif Player.player_toolbar['4'] != null && %Slot1.get_children().size() < 2:
+		%Slot3/Sprite2D.texture = weapon_texture;
+	if Player.player_toolbar['4'] != null && %Slot4.get_children().size() < 2:
 		var weapon_texture: CompressedTexture2D = Player.player_toolbar['4'].get_node('Sprite2D').texture;
-		%Slot1/Sprite2D.texture = weapon_texture;
-	elif Player.player_toolbar['5'] != null && %Slot1.get_children().size() < 2:
+		%Slot4/Sprite2D.texture = weapon_texture;
+	if Player.player_toolbar['5'] != null && %Slot5.get_children().size() < 2:
 		var weapon_texture: CompressedTexture2D = Player.player_toolbar['5'].get_node('Sprite2D').texture;
-		%Slot1/Sprite2D.texture = weapon_texture;
+		%Slot5/Sprite2D.texture = weapon_texture;
 		
 func handle_item_swap():
 	var active_slot = str(Player.active_tool_slot)
 	var player_primary: Marker2D = Player.player.get_node('PrimaryHand');
 	if player_primary.get_child(0):
 		player_primary.remove_child(player_primary.get_child(0))
-	var item = Player.player_toolbar[active_slot];
+	var item = Player.player_toolbar[active_slot].duplicate();
 	if item:
 		player_primary.add_child(item);
 	

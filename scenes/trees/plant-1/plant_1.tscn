@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://scripts/MyHurtBox.gd" id="1_8bvx2"]
 [ext_resource type="Texture2D" uid="uid://bo6oxgqlfd6ba" path="res://sprites/foliage/plant/plant-1.png" id="2_5jlq0"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_futa0"]
+radius = 9.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ypoa"]
 radius = 7.07107
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_po7uw"]
-size = Vector2(14, 12)
 
 [sub_resource type="Animation" id="Animation_3gnws"]
 resource_name = "death"
@@ -49,21 +49,24 @@ _data = {
 }
 
 [node name="Plant1" type="StaticBody2D"]
-collision_layer = 2
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_2pwuv")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_8bvx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_futa0")
+debug_color = Color(0.909804, 0.231373, 0.490196, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5jlq0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8ypoa")
-
-[node name="HitBox" type="Area2D" parent="."]
-script = ExtResource("1_8bvx2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("RectangleShape2D_po7uw")
-debug_color = Color(0.988235, 0, 0.321569, 0.419608)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
