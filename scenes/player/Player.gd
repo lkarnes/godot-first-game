@@ -40,6 +40,9 @@ func get_position_for_angle(angle_degrees):
 func handle_animations(primary_attack, secondary_attack, direction):
 	if primary_attack and not in_animation:
 		%PrimaryPivot.visible = true;
+		var item_in_hand = %PrimaryHand.get_child(0);
+		item_in_hand.get_node('HitBox').disabled = false;
+		
 		in_animation = true;
 		var tween = get_tree().create_tween()
 		%PrimaryPivot.rotation = %PrimaryPivot.rotation - 1;
@@ -55,6 +58,7 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		
 		# Wait for the tween to finish
 		await tween.step_finished
+		item_in_hand.get_node('HitBox').disabled = true;
 		in_animation = false;
 		%PrimaryPivot.visible = false;
 		
