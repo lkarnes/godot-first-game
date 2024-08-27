@@ -19,15 +19,8 @@ func _physics_process(delta):
 		Player.orientation = 'left';
 	elif 'right' in mouse_direction:
 		Player.orientation = 'right';
-	if !in_animation:
-		var item_in_hand = %PrimaryHand.get_child(0);
-		if item_in_hand && item_in_hand.get_node('HitBox'):
-			item_in_hand.get_node('HitBox').disabled = true;
-		move_and_slide();
-	else:
-		var item_in_hand = %PrimaryHand.get_child(0);
-		if item_in_hand && item_in_hand.get_node('HitBox'):
-			item_in_hand.get_node('HitBox').disabled = false;
+	
+	move_and_slide();
 	handle_animations(primary_attack, secondary_attack, direction);
 	aim_primary();
 
@@ -46,22 +39,24 @@ func get_position_for_angle(angle_degrees):
 	
 func handle_animations(primary_attack, secondary_attack, direction):
 	if primary_attack and not in_animation:
+		%PrimaryPivot.visible = true;
 		in_animation = true;
 		var tween = get_tree().create_tween()
-		%PrimaryPivot.rotation = %PrimaryPivot.rotation - 2;
+		%PrimaryPivot.rotation = %PrimaryPivot.rotation - 1;
 		# Get the current rotation in degrees
-		var current_rotation = %PrimaryPivot.rotation - 2;
+		var current_rotation = %PrimaryPivot.rotation - 1;
 
 		# Calculate the target rotation, which is current_rotation + 180 degrees
-		var target_rotation = current_rotation + 6;
+		var target_rotation = current_rotation + 4;
 
 		# Tween the rotation to the target rotation
-		tween.tween_property($PrimaryPivot, "rotation", target_rotation, 0.2)
+		tween.tween_property($PrimaryPivot, "rotation", target_rotation, 0.3)
 		tween.play()
 		
 		# Wait for the tween to finish
 		await tween.step_finished
 		in_animation = false;
+		%PrimaryPivot.visible = false;
 		
 	if secondary_attack && animation_player.animation_finished:
 		const PROJECTILE = preload('res://scenes/objects/projectiles/fire_ball_1.tscn');
@@ -69,18 +64,25 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		projectile.global_position = %ProjectileSummonPoint.global_position;
 		get_parent().add_child(projectile);
 	
-	if !primary_attack && !secondary_attack && !in_animation:
-		if direction.x < 0:
-			animation_player.play('run_left');
-		elif direction.x > 0:
-			animation_player.play('run_right');
-		elif direction.y != 0:
+	if !primary_attack && !secondary_attack:
+		# Determine the animation to play based on direction and orientation
+		if direction.x != 0 || direction.y != 0:  # Moving left
 			if Player.orientation == 'left':
-				animation_player.play('run_left');
+				animation_player.play('run_left')  # Play reverse animation
+				if direction.x < 0:
+					animation_player.speed_scale = -1;
+				else:
+					animation_player.speed_scale = 1;
 			else:
-				animation_player.play('run_right');
+				animation_player.play('run_right')   # Play normal animation
+				if direction.x > 0:
+					animation_player.speed_scale = -1;
+				else:
+					animation_player.speed_scale = 1;
 		else:
-			animation_player.play('idle-' + Player.orientation);
+			animation_player.play('idle-' + Player.orientation)
+			animation_player.speed_scale = 1  # Ensure idle animation plays normally
+
 	
 func get_mouse_direction():
 	var mouse_pos = get_global_mouse_position()
