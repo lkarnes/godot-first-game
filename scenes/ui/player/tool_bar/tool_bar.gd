@@ -67,7 +67,7 @@ func handle_item_swap():
 	var player_primary: Marker2D = Player.player.get_node('PrimaryHand');
 	if player_primary.get_child(0):
 		player_primary.remove_child(player_primary.get_child(0))
-	var item = Player.player_toolbar[active_slot].duplicate();
+	var item = Player.player_toolbar[active_slot];
 	if item:
 		player_primary.add_child(item);
 	

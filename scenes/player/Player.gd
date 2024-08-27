@@ -29,19 +29,40 @@ func _physics_process(delta):
 		if item_in_hand && item_in_hand.get_node('HitBox'):
 			item_in_hand.get_node('HitBox').disabled = false;
 	handle_animations(primary_attack, secondary_attack, direction);
+	aim_primary();
+
+func aim_primary():
+	if !in_animation:
+		var mouse_pos = get_global_mouse_position();
+		var angle = (mouse_pos - global_position).angle();
+		%PrimaryPivot.rotation = angle;
+
+# Create a function to calculate the new position based on the angle
+func get_position_for_angle(angle_degrees):
+	var angle_radians = deg_to_rad(angle_degrees)
+	var radius = 180;
+	return global_position + Vector2(radius * cos(angle_radians), radius * sin(angle_radians))
+
 	
 func handle_animations(primary_attack, secondary_attack, direction):
-	if primary_attack && animation_player.animation_finished:
-		if Player.orientation == 'left':
-			in_animation = true;
-			animation_player.play('swing_left');
-			await animation_player.animation_finished;
-			in_animation = false;
-		else:
-			in_animation = true;
-			animation_player.play('swing_right');
-			await animation_player.animation_finished;
-			in_animation = false;
+	if primary_attack and not in_animation:
+		in_animation = true;
+		var tween = get_tree().create_tween()
+		%PrimaryPivot.rotation = %PrimaryPivot.rotation - 2;
+		# Get the current rotation in degrees
+		var current_rotation = %PrimaryPivot.rotation - 2;
+
+		# Calculate the target rotation, which is current_rotation + 180 degrees
+		var target_rotation = current_rotation + 6;
+
+		# Tween the rotation to the target rotation
+		tween.tween_property($PrimaryPivot, "rotation", target_rotation, 0.2)
+		tween.play()
+		
+		# Wait for the tween to finish
+		await tween.step_finished
+		in_animation = false;
+		
 	if secondary_attack && animation_player.animation_finished:
 		const PROJECTILE = preload('res://scenes/objects/projectiles/fire_ball_1.tscn');
 		var projectile = PROJECTILE.instantiate()

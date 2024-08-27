@@ -105,6 +105,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../PrimaryHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.000102648, 1e-05, 1e-05, 0.000333506),
+"update": 0,
+"values": [Vector2(-7, -8), Vector2(-7, -7), Vector2(-7, -8), Vector2(-7, -7)]
+}
 
 [sub_resource type="Animation" id="Animation_toop6"]
 resource_name = "run_right"
@@ -189,7 +201,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../PrimaryPivot/PrimaryHand:rotation")
+tracks/0/path = NodePath("%PrimaryHand:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -232,8 +244,8 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
 texture = ExtResource("2_5tswq")
-flip_h = true
 hframes = 13
+frame = 1
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -12)
@@ -252,16 +264,14 @@ zoom = Vector2(3, 3)
 
 [node name="Cursor" parent="." instance=ExtResource("5_tubn4")]
 
-[node name="PrimaryPivot" type="Marker2D" parent="."]
+[node name="PrimaryHand" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -10)
+position = Vector2(-16, 0)
+rotation = -0.349066
 
-[node name="PrimaryHand" type="Marker2D" parent="PrimaryPivot"]
-unique_name_in_owner = true
-position = Vector2(12, 0)
-
-[node name="SerratedSword" parent="PrimaryPivot/PrimaryHand" instance=ExtResource("6_8ba6w")]
+[node name="SerratedSword" parent="PrimaryHand" instance=ExtResource("6_8ba6w")]
 position = Vector2(-3.57628e-07, 2.38419e-07)
+rotation = -0.427606
 
 [node name="ProjectileSummonPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
