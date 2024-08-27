@@ -7,6 +7,7 @@
 size = Vector2(5.65686, 30.7591)
 
 [node name="SerratedSword" type="Area2D"]
+rotation = 0.785398
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(12, -12)
