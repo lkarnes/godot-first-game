@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://q1aw8rw7qfqt"]
+[gd_scene load_steps=12 format=3 uid="uid://q1aw8rw7qfqt"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_6tmgq"]
 [ext_resource type="PackedScene" uid="uid://bh0spe5rrgwhg" path="res://sprites/tilesets/basic_grass.tscn" id="1_o1fbc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://qyfel8cg3162" path="res://scenes/levels/dungeon1.tscn" id="8_e2fco"]
 [ext_resource type="PackedScene" uid="uid://2t2oq3kitvec" path="res://scenes/trees/plant-1/plant_1.tscn" id="9_lkjhv"]
 [ext_resource type="PackedScene" uid="uid://bi5cul107781i" path="res://scenes/trees/flower_1/flower_1.tscn" id="10_exq4v"]
+[ext_resource type="PackedScene" uid="uid://dy051wxago6fk" path="res://scenes/npcs/mobs/enemy_1/enemy_1.tscn" id="11_rsdnw"]
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -58,3 +59,6 @@ position = Vector2(97, 47)
 
 [node name="Flower1" parent="." instance=ExtResource("10_exq4v")]
 position = Vector2(28, 86)
+
+[node name="Enemy1" parent="." instance=ExtResource("11_rsdnw")]
+position = Vector2(23, 165)

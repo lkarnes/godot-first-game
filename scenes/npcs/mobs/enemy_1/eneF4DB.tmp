@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy051wxago6fk"]
+
+[ext_resource type="Script" path="res://scenes/npcs/mobs/enemy_1/enemy_1.gd" id="1_bruuv"]
+[ext_resource type="Texture2D" uid="uid://b0ay55xhi8kr4" path="res://exports/web/index.icon.png" id="1_gpmy3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wckp6"]
+radius = 310.363
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngrfg"]
+radius = 13.1529
+
+[node name="Enemy1" type="CharacterBody2D"]
+script = ExtResource("1_bruuv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_gpmy3")
+
+[node name="ScanRadius" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScanRadius"]
+shape = SubResource("CircleShape2D_wckp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ngrfg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
