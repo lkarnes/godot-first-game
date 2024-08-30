@@ -3,7 +3,6 @@ extends Area2D
 class_name MyHurtBox
 @export var mask_arr = [2];
 
-
 func _ready():
 	collision_layer = 0
 	for layer in mask_arr:
@@ -11,7 +10,6 @@ func _ready():
 	connect("area_entered", self._on_area_entered)
 
 func _on_area_entered(hitbox: Area2D): 
-	print(hitbox)
 	if hitbox == null:
 		return;
 

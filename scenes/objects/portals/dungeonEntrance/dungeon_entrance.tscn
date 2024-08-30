@@ -13,6 +13,8 @@ radius = 23.0
 collision_layer = 2
 collision_mask = 253
 gravity_scale = 0.0
+lock_rotation = true
+freeze = true
 script = ExtResource("1_fwrv4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

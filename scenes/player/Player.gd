@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 250;
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
-const WEAPON = preload("res://scenes/objects/weapons/serrated_sword.tscn"); 
+@onready var primary_hand: Marker2D = %PrimaryPivot/PrimaryHand;
+@onready var projetile_summon_point: Marker2D = %ProjectileSummonPoint;
+@onready var primary_pivot: Marker2D = %PrimaryPivot;
 var in_animation = false;
 
 func _physics_process(delta):
@@ -28,7 +30,7 @@ func aim_primary():
 	if !in_animation:
 		var mouse_pos = get_global_mouse_position();
 		var angle = (mouse_pos - global_position).angle();
-		%PrimaryPivot.rotation = angle;
+		primary_pivot.rotation = angle;
 
 # Create a function to calculate the new position based on the angle
 func get_position_for_angle(angle_degrees):
@@ -39,33 +41,34 @@ func get_position_for_angle(angle_degrees):
 	
 func handle_animations(primary_attack, secondary_attack, direction):
 	if primary_attack and not in_animation:
-		%PrimaryPivot.visible = true;
-		var item_in_hand = %PrimaryHand.get_child(0);
-		item_in_hand.get_node('HitBox').disabled = false;
+		primary_pivot.visible = true;
+		var item_in_hand = primary_hand.get_child(0);
+		if item_in_hand:
+			item_in_hand.get_node('HitBox').disabled = false;
 		
 		in_animation = true;
 		var tween = get_tree().create_tween()
-		%PrimaryPivot.rotation = %PrimaryPivot.rotation - 1;
+		primary_pivot.rotation = primary_pivot.rotation - 1;
 		# Get the current rotation in degrees
-		var current_rotation = %PrimaryPivot.rotation - 1;
+		var current_rotation = primary_pivot.rotation - 1;
 
 		# Calculate the target rotation, which is current_rotation + 180 degrees
 		var target_rotation = current_rotation + 4;
 
 		# Tween the rotation to the target rotation
-		tween.tween_property($PrimaryPivot, "rotation", target_rotation, 0.3)
+		tween.tween_property(primary_pivot, "rotation", target_rotation, 0.3)
 		tween.play()
 		
 		# Wait for the tween to finish
 		await tween.step_finished
 		item_in_hand.get_node('HitBox').disabled = true;
 		in_animation = false;
-		%PrimaryPivot.visible = false;
+		primary_pivot.visible = false;
 		
 	if secondary_attack && animation_player.animation_finished:
 		const PROJECTILE = preload('res://scenes/objects/projectiles/fire_ball_1.tscn');
 		var projectile = PROJECTILE.instantiate()
-		projectile.global_position = %ProjectileSummonPoint.global_position;
+		projectile.global_position = projetile_summon_point.global_position;
 		get_parent().add_child(projectile);
 	
 	if !primary_attack && !secondary_attack:
@@ -94,7 +97,6 @@ func get_mouse_direction():
 	var direction = mouse_pos - node_pos;
 
 	if direction.x == 0 and direction.y == 0:
-		print("Mouse is at the node position")
 		return
 
 	var angle = direction.angle()
@@ -114,3 +116,15 @@ func get_mouse_direction():
 		return 'top-left';
 	else:
 		return 'left'
+		
+# helpers
+func get_primary_hand():
+	primary_hand.get_child(0);
+
+func remove_primary_hand():
+	primary_hand.remove_child(primary_hand.get_child(0));
+
+func add_to_primary_hand(item):
+	if primary_hand.get_children().size() > 0:
+		primary_hand.remove_child(primary_hand.get_child(0));
+	primary_hand.add_child(item);

@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 var health: int = 100;
+var type = "foliage";
 
 func take_damage(damage):
 	health = health - damage;
@@ -14,7 +15,10 @@ func take_damage(damage):
 func handle_death():
 	animation_player.play('death');
 	await animation_player.animation_finished;
-	Actions.drop_loot("res://scenes/objects/items/log/log.tscn", 10, .5, global_position, get_parent());
+	
+	var drop_item = Actions.weighted_random_drop(Drops.full_list.foliage.pine);
+	if drop_item:
+		Actions.drop_loot(drop_item.src, 10, 1, global_position, get_parent());
 	queue_free();
 	
 	

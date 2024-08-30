@@ -1,5 +1,23 @@
 extends Node
 
+func weighted_random_drop(item_array):
+	var sum = 0;
+	for item in item_array:
+		if item.has("weight"):
+			sum += item.weight;
+	print("sum: ", sum)
+	
+	# create random number
+	var random = randf_range(0, sum);
+	for item in item_array:
+		if random < item.weight:
+			return item;
+		else:
+			sum -= item.weight;
+	
+		
+	
+
 # Drops the loot into the scene
 func drop_loot(item_path: String, drop_amount: int, drop_rate: float, position: Vector2, scene: Node):
 	for i in range(drop_amount):
@@ -12,6 +30,5 @@ func drop_loot(item_path: String, drop_amount: int, drop_rate: float, position: 
 				var magnet = LOOT_MAGNET.instantiate();
 				var fiber = FIBER.instantiate();
 				magnet.item = fiber;
-				print(position);
 				magnet.global_position = position + Vector2(randf() * drop_amount, randf() * drop_amount);
 				scene.add_child(magnet);
