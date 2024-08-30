@@ -12,7 +12,6 @@ func _ready():
 func _on_area_entered(hitbox: Area2D): 
 	if hitbox == null:
 		return;
-	print('hitbox', hitbox)
 
 	if owner.has_method("take_damage") && !hitbox.disabled:
 		var damage = int((randf() * .25 * hitbox.damage_points) + hitbox.damage_points);

@@ -37,23 +37,25 @@ func check_for_interest_points():
 			walking_to_interest_point = true;
 		
 func move_to_interest(delta):
-	var distance = global_position.distance_to(interest.global_position);
-	if cooldown > 0:
-		print('hit_cooldown: ', cooldown);
-		cooldown -= delta;
-	else:
-		if distance > 20:
-			var direction = to_local(nav_agent.get_next_path_position()).normalized();
-			velocity = direction * speed;
-			move_and_slide();
+	if "global_position" in interest:
+		var distance = global_position.distance_to(interest.global_position);
+		if cooldown > 0:
+			cooldown -= delta;
 		else:
-			check_for_interest_points();
-			cooldown = randf() * 10;
+			if distance > 20:
+				var direction = to_local(nav_agent.get_next_path_position()).normalized();
+				velocity = direction * speed;
+				move_and_slide();
+			else:
+				check_for_interest_points();
+				cooldown = randf() * 10;
 		
 
 func make_path():
-	if interest:
+	if "global_position" in interest:
 		nav_agent.target_position = interest.global_position;
+	else:
+		check_for_interest_points();
 
 func _on_timer_timeout():
 	make_path();

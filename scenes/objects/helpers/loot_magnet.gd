@@ -37,7 +37,6 @@ func _physics_process(delta):
 		move_and_slide();
 		if distance < 2:
 			var response = Player.add_to_player_inventory(item);
-			print(response)
 			if response:
 				remove_child(item);
 				queue_free();

@@ -25,7 +25,6 @@ func set_position(pos: Vector2 = Vector2.ZERO):
 		
 # adds a item to the players inventory;
 func add_to_player_inventory(item):
-	
 	if item && player_inventory.has(item.name):
 		if typeof(player_inventory[item.name]) == TYPE_ARRAY:
 			player_inventory[item.name].append(item);

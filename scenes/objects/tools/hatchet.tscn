@@ -6,9 +6,10 @@
 [ext_resource type="Script" path="res://scripts/MyHitBox.gd" id="4_m8s45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b2h5"]
-size = Vector2(9.19239, 24.0416)
+size = Vector2(9.19239, 24.0208)
 
 [node name="Hatchet" type="Area2D"]
+rotation = 0.785398
 script = ExtResource("1_7qhom")
 flipped_texture = ExtResource("2_k074o")
 texture = ExtResource("1_yxbqa")
@@ -23,6 +24,6 @@ script = ExtResource("4_m8s45")
 collision_arr = [2]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(6.75, -5.25)
+position = Vector2(7.06372, -5.6495)
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_7b2h5")

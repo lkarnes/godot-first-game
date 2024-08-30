@@ -7,4 +7,4 @@ func _physics_process(delta):
 	if Player.orientation == 'right':
 		scale = Vector2(1,1);
 	else:
-		scale = Vector2(-1,1);
+		scale = Vector2(1,1);

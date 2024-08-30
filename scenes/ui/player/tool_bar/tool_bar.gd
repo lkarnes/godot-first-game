@@ -14,7 +14,6 @@ func _physics_process(delta: float):
 func change_slot(old_slot = null):
 	const SELECTION = preload('res://scenes/ui/player/tool_bar/tool_slot.tscn');
 	var selection = SELECTION.instantiate();
-	print(Player.player_toolbar)
 	match old_slot:
 		1:
 			if %Slot1.get_node('ToolSlot'):
@@ -63,11 +62,8 @@ func set_items_to_slots():
 		%Slot5/Sprite2D.texture = weapon_texture;
 		
 func handle_item_swap():
-	var active_slot = str(Player.active_tool_slot)
-	var player_primary: Marker2D = Player.player.get_node('PrimaryHand');
-	if player_primary.get_child(0):
-		player_primary.remove_child(player_primary.get_child(0))
+	var active_slot = str(Player.active_tool_slot);
 	var item = Player.player_toolbar[active_slot];
 	if item:
-		player_primary.add_child(item);
+		Player.player.add_to_primary_hand(item);
 	
