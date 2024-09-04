@@ -21,6 +21,7 @@ NavFunctions="*res://singletons/nav_functions.gd"
 Player="*res://singletons/Player.gd"
 Actions="*res://singletons/actions.gd"
 Drops="*res://singletons/drops.gd"
+Enums="*res://singletons/enums.gd"
 
 [input]
 

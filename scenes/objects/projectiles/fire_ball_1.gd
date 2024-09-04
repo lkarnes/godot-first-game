@@ -3,6 +3,7 @@ extends Node2D
 @onready var mouse_click_position = get_global_mouse_position()
 var speed = 500;
 var velocity = Vector2.ZERO;
+var type = 'damage';
 
 func _ready():
 	animation_player.play('rotate');

@@ -61,7 +61,8 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		
 		# Wait for the tween to finish
 		await tween.step_finished
-		item_in_hand.get_node('HitBox').disabled = true;
+		if item_in_hand:
+			item_in_hand.get_node('HitBox').disabled = true;
 		in_animation = false;
 		primary_pivot.visible = false;
 		
@@ -128,3 +129,23 @@ func add_to_primary_hand(item):
 	if primary_hand.get_children().size() > 0:
 		primary_hand.remove_child(primary_hand.get_child(0));
 	primary_hand.add_child(item);
+
+
+# HurtBox helpers
+func take_damage(damage: float):
+	print('hit for damage: ', damage);
+	pass;
+
+func apply_debuff(debuff_object: Debuff):
+	var debuff_hit_timer := Timer.new();
+	add_child(debuff_hit_timer);
+	debuff_hit_timer.wait_time = debuff_object.frequency;
+	debuff_hit_timer.timeout.connect(func():
+		take_damage(debuff_object.damage.pick_random());
+	);
+	
+	debuff_hit_timer.start();
+	
+	await get_tree().create_timer(debuff_object.duration).timeout;
+	
+	
