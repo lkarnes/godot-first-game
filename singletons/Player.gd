@@ -4,8 +4,8 @@ extends Node
 var player: CharacterBody2D;
 var health: float = 100;
 var mana: float = 100;
-var position: Vector2 = Vector2.ZERO
 var active_tool_slot: int = 1;
+var active_spell: int = 1;
 var is_submerged = true;
 var orientation = 'left';
 
@@ -16,6 +16,15 @@ var player_toolbar: Dictionary = {
 	'4': null,
 	'5': null,
 };
+
+var player_spellbar: Dictionary = {
+	'1':  preload("res://scenes/objects/projectiles/poisonous_pool.tscn").instantiate(),
+	'2':  preload("res://scenes/objects/projectiles/fire_ball_1.tscn").instantiate(),
+	'3': null,
+	'4': null,
+	'5': null,
+};
+
 
 var player_inventory = {}
 
@@ -33,5 +42,4 @@ func add_to_player_inventory(item):
 		player_inventory[item.name] = [item];
 		return true;
 	return false;
-			
 

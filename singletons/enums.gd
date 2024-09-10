@@ -6,6 +6,11 @@ enum hit_type {
 	BUFF,
 }
 
+enum cast_type {
+	DROP,
+	SHOOT,
+}
+
 enum effect_type {
 	FIRE,
 	ICE,

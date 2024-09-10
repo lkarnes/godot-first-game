@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://kipa8es3mgcu"]
+[gd_scene load_steps=11 format=3 uid="uid://kipa8es3mgcu"]
 
 [ext_resource type="PackedScene" uid="uid://daucfhktmchbj" path="res://scenes/ui/player/tool_bar/tool_bar.tscn" id="1_4bmir"]
 [ext_resource type="PackedScene" uid="uid://dyy7ssh850m0l" path="res://scenes/ui/player/inventory/Inventory.tscn" id="2_6uuiv"]
+[ext_resource type="Script" path="res://scenes/ui/player/tool_bar/PlayerHUD.gd" id="3_3n0de"]
+[ext_resource type="PackedScene" uid="uid://cls0dliw28d1" path="res://scenes/ui/player/spell_menu/spell_menu.tscn" id="4_3hpvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ouf"]
+bg_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfsv3"]
+bg_color = Color(0.678431, 0.2, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygq14"]
+bg_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bod5c"]
+bg_color = Color(0.380392, 0.592157, 0.964706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0f1te"]
+bg_color = Color(0, 0, 0, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybx3n"]
+bg_color = Color(0.819608, 0.721569, 0.172549, 1)
 
 [node name="GUI" type="CanvasLayer"]
 
@@ -9,3 +29,83 @@
 
 [node name="Inventory" parent="." instance=ExtResource("2_6uuiv")]
 visible = false
+
+[node name="PlayerHUD" type="ReferenceRect" parent="."]
+offset_right = 316.0
+offset_bottom = 96.0
+script = ExtResource("3_3n0de")
+
+[node name="HealthLabel" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = 337.0
+offset_bottom = 139.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 100
+text = "Health
+"
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 316.0
+offset_bottom = 36.0
+theme_override_styles/background = SubResource("StyleBoxFlat_x4ouf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xfsv3")
+value = 25.0
+show_percentage = false
+
+[node name="ManaLabel" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 37.0
+offset_right = 337.0
+offset_bottom = 174.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 100
+text = "Mana
+"
+
+[node name="ManaBar" type="ProgressBar" parent="PlayerHUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 51.0
+offset_right = 316.0
+offset_bottom = 71.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ygq14")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bod5c")
+value = 20.0
+show_percentage = false
+
+[node name="ExpLabel" type="Label" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 337.0
+offset_bottom = 209.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 100
+text = "XP
+"
+
+[node name="ExperienceBar" type="ProgressBar" parent="PlayerHUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 86.0
+offset_right = 316.0
+offset_bottom = 96.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0f1te")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybx3n")
+value = 50.0
+show_percentage = false
+
+[node name="SpellMenu" parent="." instance=ExtResource("4_3hpvi")]
+offset_left = 854.0
+offset_top = 531.0
+offset_right = 854.0
+offset_bottom = 531.0

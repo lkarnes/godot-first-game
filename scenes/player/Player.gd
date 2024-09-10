@@ -8,6 +8,7 @@ const SPEED = 250;
 var in_animation = false;
 
 func _physics_process(delta):
+	Player.mana = Player.mana + (1 * delta);
 	if !Player.player || !is_instance_valid(Player.player):
 		Player.player = self;
 	var primary_attack = Input.is_action_just_pressed('primary_attack');
@@ -67,10 +68,17 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		primary_pivot.visible = false;
 		
 	if secondary_attack && animation_player.animation_finished:
-		const PROJECTILE = preload('res://scenes/objects/projectiles/fire_ball_1.tscn');
-		var projectile = PROJECTILE.instantiate()
-		projectile.global_position = projetile_summon_point.global_position;
-		get_parent().add_child(projectile);
+		var spell = Player.player_spellbar[str(Player.active_spell)].duplicate();
+		if Player.mana - spell.mana_cost < 0:
+			return;
+		take_mana(spell.mana_cost);
+		match spell.cast_type:
+			Enums.cast_type.SHOOT:
+				spell.global_position = projetile_summon_point.global_position;
+			Enums.cast_type.DROP:
+				print('get_global_mouse_position: ', get_global_mouse_position());
+				spell.global_position = get_global_mouse_position();
+		get_parent().add_child(spell);
 	
 	if !primary_attack && !secondary_attack:
 		# Determine the animation to play based on direction and orientation
@@ -133,8 +141,15 @@ func add_to_primary_hand(item):
 
 # HurtBox helpers
 func take_damage(damage: float):
-	print('hit for damage: ', damage);
-	pass;
+	if Player.health - damage < 0:
+		Player.health = 0;
+	Player.health -= damage;
+
+# apply mana consumption to Player
+func take_mana(mana_cost: float):
+	if Player.mana - mana_cost < 0:
+		Player.mana = 0;
+	Player.mana -= mana_cost;
 
 func apply_debuff(debuff_object: Debuff):
 	var debuff_hit_timer := Timer.new();
@@ -143,9 +158,7 @@ func apply_debuff(debuff_object: Debuff):
 	debuff_hit_timer.timeout.connect(func():
 		take_damage(debuff_object.damage.pick_random());
 	);
-	
 	debuff_hit_timer.start();
-	
 	await get_tree().create_timer(debuff_object.duration).timeout;
-	
+	debuff_hit_timer.queue_free();
 	

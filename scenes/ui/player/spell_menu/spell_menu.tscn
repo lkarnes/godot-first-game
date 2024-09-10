@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cls0dliw28d1"]
+
+[ext_resource type="Script" path="res://scenes/ui/player/spell_menu/spell_menu.gd" id="1_1alp5"]
+[ext_resource type="Texture2D" uid="uid://b51tgllmqogjn" path="res://sprites/ui/spell-bar.png" id="1_mtlvu"]
+
+[node name="SpellMenu" type="ReferenceRect"]
+script = ExtResource("1_1alp5")
+
+[node name="Frame" type="Sprite2D" parent="."]
+position = Vector2(141, 50)
+scale = Vector2(5, 5)
+texture = ExtResource("1_mtlvu")
+
+[node name="Slot1" type="ReferenceRect" parent="Frame"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.153
+anchor_right = 0.183
+anchor_bottom = 0.845
+offset_left = -19.936
+offset_top = -3.06
+offset_right = -28.336
+offset_bottom = -16.9
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot1"]
+scale = Vector2(0.3, 0.3)
+
+[node name="Slot2" type="ReferenceRect" parent="Frame"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.228
+anchor_top = 0.151
+anchor_right = 0.38
+anchor_bottom = 0.85
+offset_left = -12.576
+offset_top = -3.02
+offset_right = -21.088
+offset_bottom = -17.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot2"]
+scale = Vector2(0.3, 0.3)
+
+[node name="Slot3" type="ReferenceRect" parent="Frame"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.424
+anchor_top = 0.15
+anchor_right = 0.576
+anchor_bottom = 0.85
+offset_left = -5.408
+offset_top = -3.0
+offset_right = -13.92
+offset_bottom = -17.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Frame/Slot3"]
+scale = Vector2(0.3, 0.3)

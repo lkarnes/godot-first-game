@@ -5,7 +5,6 @@ func weighted_random_drop(item_array):
 	for item in item_array:
 		if item.has("weight"):
 			sum += item.weight;
-	print("sum: ", sum)
 	
 	# create random number
 	var random = randf_range(0, sum);

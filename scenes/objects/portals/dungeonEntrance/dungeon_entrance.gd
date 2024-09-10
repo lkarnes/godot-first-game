@@ -12,5 +12,5 @@ func _on_player_in_range_body_exited(body):
 	
 	
 func _process(delta):
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") && entered:
 		NavFunctions.change_scene(next_scene);
