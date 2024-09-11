@@ -68,7 +68,10 @@ func handle_animations(primary_attack, secondary_attack, direction):
 		primary_pivot.visible = false;
 		
 	if secondary_attack && animation_player.animation_finished:
-		var spell = Player.player_spellbar[str(Player.active_spell)].duplicate();
+		var spell = Player.player_spellbar[str(Player.active_spell)];
+		# handles the use case where the spell slot is empty
+		if spell:
+			spell = spell.duplicate(); # we need to duplicate to ensure its not the instance used for the inventory slot
 		if Player.mana - spell.mana_cost < 0:
 			return;
 		take_mana(spell.mana_cost);

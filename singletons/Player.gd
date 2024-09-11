@@ -18,8 +18,8 @@ var player_toolbar: Dictionary = {
 };
 
 var player_spellbar: Dictionary = {
-	'1':  preload("res://scenes/objects/projectiles/poisonous_pool.tscn").instantiate(),
-	'2':  preload("res://scenes/objects/projectiles/fire_ball_1.tscn").instantiate(),
+	'1':  preload("res://scenes/objects/projectiles/fire_ball_1.tscn").instantiate(),
+	'2':  preload("res://scenes/objects/projectiles/poisonous_pool.tscn").instantiate(),
 	'3': null,
 	'4': null,
 	'5': null,

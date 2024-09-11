@@ -5,7 +5,7 @@ func _physics_process(delta: float):
 	var old_slot = Player.active_spell
 	set_items_to_slots();
 	
-	for i in range(1, 3):  # Iterate over tool slots 1 to 5
+	for i in range(1, 4):  # Iterate over tool slots 1 to 5
 		if Input.is_action_just_pressed("spell_slot_" + str(i)) && old_slot != i:
 			Player.active_spell = i
 			change_slot(old_slot)
