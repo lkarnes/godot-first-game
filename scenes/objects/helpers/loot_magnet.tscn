@@ -17,6 +17,7 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_kdew1")
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 autostart = true

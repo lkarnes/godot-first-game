@@ -16,11 +16,11 @@ var foliage = {
 		},
 		{
 			"src": "res://scenes/objects/items/fiber/fiber.tscn",
-			"weight": .3,
+			"weight": .2,
 		},
 		{
 			"src": null,
-			"weight": .2,
+			"weight": .1,
 		},
 	],
 	"plant": [
