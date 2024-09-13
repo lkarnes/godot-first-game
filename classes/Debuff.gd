@@ -4,9 +4,9 @@ extends Node
 var damage: Array;
 var frequency: float;
 var duration: float;
-var type: Enums.effect_type;
+var type: String;
 
-func _init(_damage: Array, _frequency: float, _duration: float, _type: Enums.effect_type):
+func _init(_damage: Array, _frequency: float, _duration: float, _type: String):
 	damage = _damage;
 	frequency = _frequency;
 	duration = _duration;

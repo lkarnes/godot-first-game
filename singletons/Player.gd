@@ -25,7 +25,6 @@ var player_spellbar: Dictionary = {
 	'5': null,
 };
 
-
 var player_inventory = {}
 
 func set_position(pos: Vector2 = Vector2.ZERO):

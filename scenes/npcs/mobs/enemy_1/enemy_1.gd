@@ -17,6 +17,9 @@ var jump_direction; # used to keep angle of the jump
 var priority_by_item_type = ['npc', 'foliage', 'other'];
 
 func _physics_process(delta):
+	if health <= 0:
+		handle_death();
+	
 	if !walking_to_interest_point:
 		check_for_interest_points();
 	elif walking_to_interest_point && player_in_range:
@@ -106,3 +109,6 @@ func _on_timer_timeout():
 	
 func take_damage(damage: float):
 	health -= damage;
+
+func handle_death():
+	queue_free();

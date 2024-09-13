@@ -1,3 +1,4 @@
 extends Area2D
 
-var type: Enums.hit_type = Enums.hit_type.DAMAGE;
+var hit_type: String = Constants.hit_type.DAMAGE;
+var tool_type := Constants.tool_type.SWORD;

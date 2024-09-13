@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi5cul107781i"]
+[gd_scene load_steps=9 format=3 uid="uid://bi5cul107781i"]
 
 [ext_resource type="Texture2D" uid="uid://cclosp2vetg4h" path="res://sprites/tilesets/building/flower-1.png" id="1_61eyg"]
 [ext_resource type="Script" path="res://scenes/trees/flower_1/flower_1.gd" id="1_f13f6"]
@@ -45,6 +45,9 @@ _data = {
 "hit": SubResource("Animation_tu1md")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84lde"]
+size = Vector2(16, 16)
+
 [node name="Flower1" type="StaticBody2D"]
 script = ExtResource("1_f13f6")
 
@@ -65,3 +68,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_g87ad")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_84lde")
+debug_color = Color(0.027451, 0.65098, 0, 0.419608)

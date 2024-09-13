@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bglg1ox2quxpm"]
+[gd_scene load_steps=5 format=3 uid="uid://bglg1ox2quxpm"]
 
+[ext_resource type="Script" path="res://scenes/objects/tools/hatchet.gd" id="1_85an7"]
 [ext_resource type="Texture2D" uid="uid://d261h87mjfgln" path="res://sprites/tools/hatchet/hatchet.png" id="1_yxbqa"]
 [ext_resource type="Script" path="res://scripts/MyHitBox.gd" id="4_m8s45"]
 
@@ -8,6 +9,7 @@ size = Vector2(9.19239, 24.0208)
 
 [node name="Hatchet" type="Area2D"]
 rotation = 0.785398
+script = ExtResource("1_85an7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

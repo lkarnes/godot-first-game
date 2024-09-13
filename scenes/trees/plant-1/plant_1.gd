@@ -2,6 +2,8 @@ extends StaticBody2D
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 var health: int = 10;
+var type := Constants.foliage.WILD_PLANT;
+var display_name = 'Weed';
 
 func take_damage(damage):
 	health = health - damage;

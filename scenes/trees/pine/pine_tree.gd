@@ -3,7 +3,8 @@ extends StaticBody2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer;
 @onready var sprite: Sprite2D = %Sprite2D;
 var health: int = 100;
-var type = "foliage";
+var type := Constants.foliage.TREE;
+var display_name = 'Pine Tree';
 
 func _physics_process(delta):
 	if "global_position" in Player.player && global_position.distance_to(Player.player.global_position) < 40 && global_position.y > Player.player.global_position.y:
@@ -12,6 +13,7 @@ func _physics_process(delta):
 		sprite.modulate.a = 1;
 
 func take_damage(damage):
+	print('taking damage: ', damage);
 	health = health - damage;
 	
 	if health <= 0:

@@ -5,7 +5,7 @@ class_name MyHitBox
 @export var damage_points: int = 40;
 @export var disabled: bool = true;
 @export var collision_arr: Array;
-@export var type: Enums.hit_type;
+@export var hit_type: String;
 
 func _ready():
 	for layer in collision_arr:

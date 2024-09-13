@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://st1g88hn1qey"]
+[gd_scene load_steps=5 format=3 uid="uid://st1g88hn1qey"]
 
+[ext_resource type="Script" path="res://scenes/objects/weapons/serrated_sword.gd" id="1_ghykr"]
 [ext_resource type="Texture2D" uid="uid://mghgm4k1if13" path="res://sprites/wepons/seraded blade.png" id="1_hg5fl"]
 [ext_resource type="Script" path="res://scripts/MyHitBox.gd" id="2_g6bny"]
 
@@ -10,6 +11,7 @@ size = Vector2(5.65686, 30.7591)
 rotation = 0.785398
 collision_layer = 0
 collision_mask = 255
+script = ExtResource("1_ghykr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(12, -12)

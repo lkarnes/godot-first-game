@@ -7,7 +7,6 @@ var prev_health;
 
 func _physics_process(delta):
 	if "max_health" in parent:
-		print(parent.max_health);
 		max_value = parent.max_health;
 	
 	if "health" in parent:

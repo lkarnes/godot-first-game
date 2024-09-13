@@ -3,9 +3,9 @@ extends Node2D
 @onready var mouse_click_position = get_global_mouse_position()
 var speed = 500;
 var velocity = Vector2.ZERO;
-var type: Enums.hit_type = Enums.hit_type.DAMAGE;
+var hit_type: String = Constants.hit_type.DAMAGE;
 var display_name = 'Minor Ball Of Fire'
-var cast_type = Enums.cast_type.SHOOT;
+var cast_type = Constants.cast_type.SHOOT;
 var mana_cost = 5;
 
 func _ready():

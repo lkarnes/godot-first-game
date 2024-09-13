@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://q8ufob6i2ul"]
+
+[ext_resource type="Texture2D" uid="uid://bwncqcc1uwoc0" path="res://sprites/tools/hoe/hoe.png" id="1_3te86"]
+[ext_resource type="Script" path="res://scenes/objects/tools/hoe.gd" id="1_xq8l7"]
+
+[node name="Hoe" type="Area2D"]
+script = ExtResource("1_xq8l7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9, 1)
+rotation = 0.785398
+texture = ExtResource("1_3te86")
